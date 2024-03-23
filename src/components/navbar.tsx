@@ -33,7 +33,7 @@ export default function Navbar() {
         className="transition hover:scale-105 active:scale-100"
       >
         
-        {!{isSignedIn} && <GetStartedButton></GetStartedButton>}
+        {{isSignedIn} && <GetStartedButton></GetStartedButton>}
       </motion.div>
     </nav>
   );

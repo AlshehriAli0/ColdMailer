@@ -1,7 +1,12 @@
 import React from 'react'
 import {auth} from "@clerk/nextjs";
-
 export default function ToolPage() {
-  const {userId} = auth()
-  return <h1 className='text-white'>{userId}</h1>;
+  const {getToken} = auth()
+  const Token = getToken()
+ 
+  return (
+    <h1 className="text-white">
+      {Token}
+    </h1>
+  );
 }
