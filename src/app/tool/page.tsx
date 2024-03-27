@@ -1,12 +1,16 @@
-import React from 'react'
-import {auth} from "@clerk/nextjs";
-export default function ToolPage() {
-  const {getToken} = auth()
-  const Token = getToken()
- 
+import React from "react";
+
+import { saveUser } from "@/server/save-user";
+import { verify } from "@/server/verify";
+
+export default async function ToolPage() {
+  const { email, name, id } = verify();
+
+  await saveUser({ email, name, id });
+
   return (
-    <h1 className="text-white">
-      {Token}
-    </h1>
+    <section className="text-white">
+      
+    </section>
   );
 }

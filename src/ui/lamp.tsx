@@ -1,4 +1,5 @@
 "use client";
+
 import React from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/utils/cn";
@@ -7,16 +8,17 @@ export function LampDemo() {
   return (
     <LampContainer>
       <motion.h1
-        initial={{ opacity: 0.5, y: 100 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0.4, y: 100 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{
-          delay: 0.3,
+          
           duration: 0.8,
           ease: "easeInOut",
         }}
-        className="mt-8 bg-gradient-to-br from-slate-200 to-violet-500 bg-clip-text py-4 text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl xl:-mb-12 2xl:mb-48"
+        className="bg-gradient-to-br from-slate-200 to-violet-500 bg-clip-text py-4 text-center text-[2.75rem] font-medium leading-[3rem] tracking-tight text-transparent md:mt-8 md:text-7xl md:leading-none xl:-mb-12 2xl:mb-36"
       >
-        Send Bulk Emails <br /> the easy way
+        Send <span className="font-extrabold">Bulk</span> Emails <br /> the easy
+        way
       </motion.h1>
     </LampContainer>
   );
@@ -32,16 +34,16 @@ export const LampContainer = ({
   return (
     <div
       className={cn(
-        "relative -z-50 flex min-h-screen w-full flex-col items-center justify-center overflow-hidden rounded-md bg-slate-950 2xl:mt-28 2xl:scale-110",
+        "relative -z-50 -mb-24 flex min-h-screen w-full flex-col items-center justify-center overflow-hidden rounded-md bg-slate-950 2xl:mt-16",
         className,
       )}
     >
-      <div className="relative isolate z-0 flex w-full flex-1 scale-y-125 items-center justify-center ">
+      <div className="relative isolate z-0 flex w-full flex-1 scale-50 scale-y-125 items-center justify-center md:scale-100 2xl:scale-125 ">
         <motion.div
           initial={{ opacity: 0.5, width: "15rem" }}
-          whileInView={{ opacity: 1, width: "30rem" }}
+          animate={{ opacity: 1, width: "30rem" }}
           transition={{
-            delay: 0.3,
+            
             duration: 0.8,
             ease: "easeInOut",
           }}
@@ -55,9 +57,9 @@ export const LampContainer = ({
         </motion.div>
         <motion.div
           initial={{ opacity: 0.5, width: "15rem" }}
-          whileInView={{ opacity: 1, width: "30rem" }}
+          animate={{ opacity: 1, width: "30rem" }}
           transition={{
-            delay: 0.3,
+            
             duration: 0.8,
             ease: "easeInOut",
           }}
@@ -74,9 +76,9 @@ export const LampContainer = ({
         <div className="absolute inset-auto z-50 h-36 w-[28rem] -translate-y-1/2 rounded-full bg-violet-500 opacity-50 blur-3xl"></div>
         <motion.div
           initial={{ width: "8rem" }}
-          whileInView={{ width: "16rem" }}
+          animate={{ width: "16rem" }}
           transition={{
-            delay: 0.3,
+            
             duration: 0.8,
             ease: "easeInOut",
           }}
@@ -84,9 +86,9 @@ export const LampContainer = ({
         ></motion.div>
         <motion.div
           initial={{ width: "15rem" }}
-          whileInView={{ width: "30rem" }}
+          animate={{ width: "30rem" }}
           transition={{
-            delay: 0.3,
+            
             duration: 0.8,
             ease: "easeInOut",
           }}
@@ -96,7 +98,7 @@ export const LampContainer = ({
         <div className="absolute inset-auto z-40 h-44 w-full -translate-y-[12.5rem] bg-slate-950 "></div>
       </div>
 
-      <div className="relative z-50 flex -translate-y-80 flex-col items-center px-5 ">
+      <div className="relative z-50 flex -translate-y-80 flex-col items-center px-5 2xl:scale-125 ">
         {children}
       </div>
     </div>
