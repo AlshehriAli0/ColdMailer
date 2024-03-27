@@ -1,6 +1,8 @@
 import React from "react";
 import dynamic from "next/dynamic";
 import { GiIceCube } from "react-icons/gi";
+import Link from "next/link";
+import { MdMarkEmailRead } from "react-icons/md";
 
 const Meteors = dynamic(() => import("@/ui/meteors"));
 
@@ -32,9 +34,10 @@ export default function InfoCard() {
             what matters most: building connections.
           </p>
 
-          <button className="left absolute left-8 rounded-lg border border-violet-500 px-8 py-3 text-violet-300 transition-all hover:scale-105 hover:bg-violet-900/10 active:scale-100 sm:left-12 md:py-2 ">
+          <Link href={"/tool"} className="left flex items-center absolute left-8 rounded-lg border border-violet-500 hover:border-2 px-8 py-3 text-violet-300 transition-all hover:scale-105 hover:bg-violet-900/10 active:scale-100 sm:left-12 md:py-2 ">
             Start Mailing
-          </button>
+            <MdMarkEmailRead className="ml-2 text-xl" />
+          </Link>
 
           <Meteors />
         </div>
