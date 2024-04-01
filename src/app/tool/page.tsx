@@ -1,16 +1,19 @@
 import React from "react";
 
-import { saveUser } from "@/server/save-user";
-import { verify } from "@/server/verify";
+import { saveUser } from "@/app/actions";
 
-export default async function ToolPage() {
-  const { email, name, id } = verify();
+export default function ToolPage() {
 
-  await saveUser({ email, name, id });
+  void saveUser();
 
   return (
     <section className="text-white">
-      
+      <div className="flex h-screen w-screen items-center justify-center">
+        <h1 className="text-5xl">hi44444444444444444444444</h1>
+      </div>
+      <div className="flex h-screen w-screen items-center justify-center">
+        <h1 className="text-5xl">hi44444444444444444444444</h1>
+      </div>
     </section>
   );
 }

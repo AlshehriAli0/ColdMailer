@@ -3,6 +3,7 @@
 import Link from "next/link";
 import React from "react";
 
+import clsx from "clsx";
 import { motion } from "framer-motion";
 import { GiIceCube } from "react-icons/gi";
 import { usePathname } from "next/navigation";
@@ -12,7 +13,14 @@ export default function Navbar() {
   const pathName = usePathname();
 
   return (
-    <nav className="absolute top-0 mx-auto flex h-20 w-screen items-center justify-between px-6 md:h-16 ">
+    <nav
+      className={clsx(
+        " top-0 z-50 mx-auto flex h-20 w-screen items-center justify-between px-6 md:h-16 ",
+        pathName !== "/"
+          ? "safari-blur fixed border-b border-b-white/5 bg-slate-950/50"
+          : "absolute ",
+      )}
+    >
       <motion.div
         initial={{ y: -100 }}
         animate={{ y: 0 }}

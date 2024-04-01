@@ -7,6 +7,7 @@ import Navbar from "../components/navbar";
 import type { AppProps } from "next/app";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
+import Footer from "@/components/footer";
 
 const inter = Inter({
   subsets: ["latin-ext"],
@@ -33,10 +34,11 @@ export default function RootLayout({
           <meta charSet="utf-8" />
         </head>
 
-        <body className={`bg-slate-950 font-sans ${inter.className}`}>
+        <body className={`bg-slate-950 font-sans h-[1000px] ${inter.className}`}>
           <MantineProvider>
             <Navbar />
             {children}
+            <Footer />
           </MantineProvider>
         </body>
       </html>

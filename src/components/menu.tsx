@@ -1,39 +1,60 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { useDisclosure } from "@mantine/hooks";
 import { Drawer } from "@mantine/core";
-import clsx from "clsx";
+import { RiMenu3Line } from "react-icons/ri";
+import Link from "next/link";
 
 export default function Menu() {
   const [opened, { open, close }] = useDisclosure(false);
-  const [shimmerVisible, setShimmerVisible] = useState(false);
-
-  setTimeout(() => {
-    setShimmerVisible(true);
-  }, 1000);
 
   return (
-    <React.Fragment>
+    <aside className="z-50">
       <Drawer
-        position="right"
-        offset={8}
-        size={320}
-        radius="sm"
+        styles={{
+          header: {
+            backgroundColor: "rgb(2 6 23 / 0)",
+            color: "rgb(255 255 255)",
+          },
+          content: {
+            backdropFilter: "blur(30px)",
+            WebkitBackdropFilter: "blur(30px)",
+            backgroundColor: "rgb(2 6 23 / 0)",
+            borderLeft: "1px solid rgb(255 255 255 / 0.07)",
+          },
+          inner: {
+            marginTop: "65px",
+          },
+        }}
+        withCloseButton={false}
+        position="top"
+        withOverlay={false}
+        radius="md"
+        size={10000}
         opened={opened}
         onClose={close}
-        title="Authentication"
-      ></Drawer>
+        title="Control Panel"
+      >
+        <Link
+          href={"/profile"}
+          className="h-full w-full border-t-2 border-white/5"
+        >
+          Profile
+        </Link>
+        <button className="h-12 w-full border-t-2 border-white/5"> </button>
+        <button className="h-12 w-full border-t-2 border-white/5"></button>
+        <button className="h-12 w-full border-t-2 border-white/5"></button>
+      </Drawer>
 
       <button
-        onClick={open}
-        className={clsx(
-          " items-center justify-center rounded-md border border-violet-800/35 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-8 py-3 text-xl font-medium tracking-tight text-violet-400 transition-all hover:scale-105 active:scale-100",
-          shimmerVisible && "animate-shimmer",
-        )}
+        onClick={opened ? close : open}
+        className={
+          "group items-center justify-center rounded-md border-b-2 border-violet-900 px-4 py-3 text-xl font-medium tracking-tight text-violet-400 transition-all hover:bg-violet-900/10 active:scale-95 md:active:scale-100"
+        }
       >
-        Open Drawer
+        <RiMenu3Line className="transition group-hover:scale-110 sm:text-2xl" />
       </button>
-    </React.Fragment>
+    </aside>
   );
 }
