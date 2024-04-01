@@ -6,6 +6,8 @@ import { Drawer } from "@mantine/core";
 import { RiMenu3Line } from "react-icons/ri";
 import Link from "next/link";
 
+import { linkData } from "@/lib/data";
+
 export default function Menu() {
   const [opened, { open, close }] = useDisclosure(false);
 
@@ -16,6 +18,7 @@ export default function Menu() {
           header: {
             backgroundColor: "rgb(2 6 23 / 0)",
             color: "rgb(255 255 255)",
+            visibility: "hidden",
           },
           content: {
             backdropFilter: "blur(30px)",
@@ -36,15 +39,16 @@ export default function Menu() {
         onClose={close}
         title="Control Panel"
       >
-        <Link
-          href={"/profile"}
-          className="h-full w-full border-t-2 border-white/5"
-        >
-          Profile
-        </Link>
-        <button className="h-12 w-full border-t-2 border-white/5"> </button>
-        <button className="h-12 w-full border-t-2 border-white/5"></button>
-        <button className="h-12 w-full border-t-2 border-white/5"></button>
+        {linkData.map((link, index: number) => (
+          <div key={index} className="h-12 w-full">
+            <Link
+              href={link.href}
+              className="h-screen w-full border-t-2 border-white/5"
+            >
+              {link.name}
+            </Link>
+          </div>
+        ))}
       </Drawer>
 
       <button

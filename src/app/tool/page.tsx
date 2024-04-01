@@ -11,9 +11,7 @@ export default function ToolPage() {
       <div className="flex h-screen w-screen items-center justify-center">
         <h1 className="text-5xl">hi44444444444444444444444</h1>
       </div>
-      <div className="flex h-screen w-screen items-center justify-center">
-        <h1 className="text-5xl">hi44444444444444444444444</h1>
-      </div>
+      
     </section>
   );
 }
