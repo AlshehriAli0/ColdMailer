@@ -13,6 +13,6 @@ export const linkData = [
   },
   {
     name: "Logout",
-    href: "/logout",
+    href: "",
   },
 ] as const;

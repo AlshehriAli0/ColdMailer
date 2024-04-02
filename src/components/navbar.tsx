@@ -10,13 +10,13 @@ import { usePathname } from "next/navigation";
 import Menu from "./menu";
 
 export default function Navbar() {
-  const pathName = usePathname();
+  const pathName: string = usePathname();
 
   return (
     <nav
       className={clsx(
-        " top-0 z-50 mx-auto flex h-20 w-screen items-center justify-between px-6 md:h-16 ",
-        pathName !== "/"
+        " top-0 !z-50 mx-auto flex h-20 w-screen items-center justify-between px-6 md:h-16 ",
+        pathName !== "/" && pathName !== "/sign-up" && pathName !== "/sign-in"
           ? "safari-blur fixed border-b border-b-white/5 bg-slate-950/50"
           : "absolute ",
       )}

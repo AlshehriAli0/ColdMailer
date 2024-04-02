@@ -47,7 +47,7 @@ export default function SignInForm() {
 
             formButtonPrimary:
               "bg-violet-700 hover:bg-violet-900 hover:scale-105 active:scale-100 -mt-2",
-            card: "bg-violet-200/10 h-[35rem] border border-white/5 sm:hover:!scale-[1.025] transition",
+            card: "bg-violet-200/10 h-[35rem] border border-white/5 transition",
             headerTitle: "-mt-8 text-violet-400",
             headerSubtitle: "text-violet-800",
             formFieldRow: "-mt-4 mb-2",

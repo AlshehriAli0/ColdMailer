@@ -34,7 +34,7 @@ export default function RootLayout({
           <meta charSet="utf-8" />
         </head>
 
-        <body className={`bg-slate-950 font-sans h-[1000px] ${inter.className}`}>
+        <body className={`bg-slate-950 font-sans ${inter.className}`}>
           <MantineProvider>
             <Navbar />
             {children}
