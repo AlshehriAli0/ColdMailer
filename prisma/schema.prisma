@@ -8,18 +8,23 @@ datasource db {
 }
 
 model User {
-  id                String            @id @unique
-  email             String            @unique
-  createdAt         DateTime          @default(now())
-  updatedAt         DateTime          @updatedAt
+  id                String      @id @unique
+  email             String      @unique
+  createdAt         DateTime    @default(now())
+  updatedAt         DateTime    @updatedAt
   first_name        String
-  otherTableEntries OtherTableEntry[]
+  recipients        Recipient[]
+
 }
 
-model OtherTableEntry {
-  id      Int      @id @default(autoincrement())
-  emails  String[]
-  paskeys String[]
-  userId  String
-  user    User     @relation(fields: [userId], references: [id])
+model Recipient {
+  id           Int      @id @default(autoincrement())
+  emailAddress String
+  name         String
+  sentTo       DateTime @default(now())
+  status       String
+
+  userId       String
+  user         User     @relation(fields: [userId], references: [id])
+
 }
