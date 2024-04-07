@@ -8,8 +8,8 @@ export default function Footer() {
         &copy; {year} ColdMailer By Ali Alshehri. All rights reserved.
       </small>
       <div className="text-xs">
-        <span className="font-semibold">About this website: </span>A mail sending tool, built using
-        Next.js, TypeScript, Prisma & PostgreSQL, Tailwind CSS, Framer Motion, FastApi for Backend and deployed through Vercel.
+        <span className="font-semibold">About this website: </span>A modern mail sending tool, built using
+        Next.js, TypeScript, tRPC, Prisma & PostgreSQL, Tailwind CSS, FastApi for Backend and deployed through Vercel.
       </div>
     </footer>
   );

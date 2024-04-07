@@ -9,7 +9,7 @@ export const linkData = [
   },
   {
     name: "Dashboard",
-    href: "/Dashboard",
+    href: "/dashboard",
   },
   {
     name: "Logout",

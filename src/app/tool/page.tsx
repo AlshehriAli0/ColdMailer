@@ -9,7 +9,6 @@ export default function ToolPage() {
   return (
     <section className="text-white">
       <div className="flex h-screen w-screen items-center justify-center">
-        <Test />
         <h1 className="text-5xl">hi444444444</h1>
       </div>
     </section>
