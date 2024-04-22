@@ -1,12 +1,14 @@
 import React from "react";
+
 import { linkData } from "@/lib/data";
 import Link from "next/link";
+import { useClerk } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
 
 import { CgProfile } from "react-icons/cg";
 import { SiMinutemailer } from "react-icons/si";
 import { MdOutlineDashboardCustomize, MdLogout } from "react-icons/md";
-import { useClerk } from "@clerk/nextjs";
-import { useRouter } from "next/navigation";
+
 
 const linksIcons = {
   Profile: <CgProfile />,
@@ -27,9 +29,10 @@ export default function MenuLinks({ closeMenu }: MenuLinksProps) {
     if (linkName === "Logout") {
       await signOut(() => router.push("/"));
     }
+    
     setTimeout(() => {
       closeMenu();
-    }, 100);
+    }, 500);
   };
 
   return (

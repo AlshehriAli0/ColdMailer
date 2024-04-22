@@ -15,7 +15,7 @@ export default function Navbar() {
   return (
     <nav
       className={clsx(
-        " top-0 !z-50 mx-auto flex h-20 !w-full items-center justify-between px-6 md:h-16 ",
+        " top-0 !z-50 mx-auto flex h-20 !w-full items-center justify-between px-12 md:h-16 ",
         pathName !== "/" &&
           !pathName.startsWith("/sign-up") &&
           !pathName.startsWith("/sign-in")

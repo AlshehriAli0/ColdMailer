@@ -8,6 +8,7 @@ import type { AppProps } from "next/app";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 import Footer from "@/components/footer";
+import SideBar from "@/components/sidebar";
 
 const inter = Inter({
   subsets: ["latin-ext"],
@@ -20,13 +21,12 @@ export const metadata = {
 
 export default function RootLayout({
   children,
-  pageProps,
 }: {
   children: React.ReactNode;
   pageProps: AppProps;
 }) {
   return (
-    <ClerkProvider {...pageProps}>
+    <ClerkProvider >
       <html lang="en" className="!scroll-smooth">
         <head>
           <ColorSchemeScript />
@@ -36,6 +36,7 @@ export default function RootLayout({
 
         <body className={`bg-slate-950 font-sans ${inter.className}`}>
           <MantineProvider>
+            <SideBar />
             <Navbar />
             {children}
             <Footer />
