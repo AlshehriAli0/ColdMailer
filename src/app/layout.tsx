@@ -2,8 +2,6 @@ import "@/styles/globals.css";
 import "@mantine/core/styles.css";
 import "@mantine/dropzone/styles.css";
 
-import TRPCProvider from "@/app/_trpc/Provider";
-
 import { Inter } from "next/font/google";
 import Navbar from "../components/navbar";
 import type { AppProps } from "next/app";
@@ -39,7 +37,7 @@ export default function RootLayout({
         <body className={`bg-slate-950 font-sans ${inter.className}`}>
           <MantineProvider>
             <Navbar />
-            <TRPCProvider>{children}</TRPCProvider>
+            {children}
             <Footer />
           </MantineProvider>
         </body>

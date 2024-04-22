@@ -33,6 +33,9 @@ export default function SignInForm() {
             dividerLine: "bg-white/10",
             socialButtonsBlockButtonArrow: "text-violet-200",
             providerIcon__apple: "!white invert",
+            otpCodeFieldInput:"text-violet-300 focus:outline-none active:outline border-white/10 active:border-violet-200 border-2 focus:border-violet-200",
+            formHeaderTitle: "text-violet-200",
+            formHeaderSubtitle: "text-violet-200",
 
             formFieldAction__password:
               "text-violet-200 hover:text-violet-300 transition-all",

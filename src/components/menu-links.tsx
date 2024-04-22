@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import { linkData } from "@/lib/data";
 import Link from "next/link";
@@ -17,7 +15,11 @@ const linksIcons = {
   Logout: <MdLogout />,
 };
 
-export default function MenuLinks() {
+interface MenuLinksProps {
+  closeMenu: () => void;
+}
+
+export default function MenuLinks({ closeMenu }: MenuLinksProps) {
   const { signOut } = useClerk();
   const router = useRouter();
 
@@ -25,6 +27,9 @@ export default function MenuLinks() {
     if (linkName === "Logout") {
       await signOut(() => router.push("/"));
     }
+    setTimeout(() => {
+      closeMenu();
+    }, 100);
   };
 
   return (

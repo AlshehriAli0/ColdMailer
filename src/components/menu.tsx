@@ -21,8 +21,8 @@ export default function Menu() {
             display: "none",
           },
           content: {
-            backdropFilter: "blur(30px)",
-            WebkitBackdropFilter: "blur(30px)",
+            backdropFilter: "blur(50px)",
+            WebkitBackdropFilter: "blur(50px)",
             backgroundColor: "rgb(2 6 23 / 0)",
             borderLeft: "1px solid rgb(255 255 255 / 0.07)",
           },
@@ -40,8 +40,7 @@ export default function Menu() {
         onClose={close}
         title="Control Panel"
       >
-        
-        <MenuLinks />
+        <MenuLinks closeMenu={close} />
       </Drawer>
 
       <button

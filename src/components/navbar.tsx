@@ -15,12 +15,12 @@ export default function Navbar() {
   return (
     <nav
       className={clsx(
-        " top-0 !z-50 mx-auto flex h-20 w-screen items-center justify-between px-6 md:h-16 ",
+        " top-0 !z-50 mx-auto flex h-20 !w-full items-center justify-between px-6 md:h-16 ",
         pathName !== "/" &&
           !pathName.startsWith("/sign-up") &&
           !pathName.startsWith("/sign-in")
           ? "safari-blur fixed border-b border-b-white/5 bg-slate-950/50"
-          : "absolute ",
+          : "absolute",
       )}
     >
       <motion.div
@@ -42,7 +42,9 @@ export default function Navbar() {
         transition={{ duration: 0.35 }}
         className="transition hover:scale-105 active:scale-100"
       >
-        {pathName === "/tool" && <Menu></Menu>}
+        {pathName !== "/" &&
+          !pathName.startsWith("/sign-up") &&
+          !pathName.startsWith("/sign-in") && <Menu></Menu>}
       </motion.div>
     </nav>
   );

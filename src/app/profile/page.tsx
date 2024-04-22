@@ -5,12 +5,14 @@ import { UserProfile } from "@clerk/nextjs";
 
 export default function Profile() {
   return (
-    <UserProfile appearance={
-        {
-            elements:{
-                card: "w-screen bg-slate-950 mt-12"
-            }
-        }
-    }></UserProfile>
-  )
+    <section className="mb-32 flex w-full justify-center">
+      <UserProfile
+        appearance={{
+          elements: {
+            card: "w-screen dark mt-24 -mb-24",
+          },
+        }}
+      ></UserProfile>
+    </section>
+  );
 }
