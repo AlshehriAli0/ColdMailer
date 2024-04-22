@@ -19,7 +19,7 @@ export default function Navbar() {
         pathName !== "/" &&
           !pathName.startsWith("/sign-up") &&
           !pathName.startsWith("/sign-in")
-          ? "safari-blur fixed border-b border-b-white/5 bg-slate-950/50"
+          ? "safari-blur fixed border-b border-b-white/10 bg-slate-950/50"
           : "absolute",
       )}
     >
