@@ -13,6 +13,7 @@ model User {
   createdAt         DateTime    @default(now())
   updatedAt         DateTime    @updatedAt
   first_name        String
+  token             String
   recipients        Recipient[]
 
 }
@@ -21,7 +22,7 @@ model Recipient {
   id           Int      @id @default(autoincrement())
   emailAddress String
   name         String
-  sentTo       DateTime @default(now())
+  sentAt       DateTime @default(now())
   status       String
 
   userId       String

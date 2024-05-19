@@ -37,6 +37,6 @@
     "**/*.cjs",
     "**/*.js",
     ".next/types/**/*.ts"
-  ],
+, "src/app/dashboard/tracker", "src/app/dashboard/passkeys", "src/app/dashboard/learn-how"  ],
   "exclude": ["node_modules"]
 }

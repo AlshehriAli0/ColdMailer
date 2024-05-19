@@ -15,7 +15,7 @@ export default function SideBar() {
   return (
     <nav
       className={clsx(
-        "fixed mt-24 flex h-full w-full shrink-0 flex-col sm:w-[240px]",
+        "fixed bg-slate-950 !z-40 flex w-full -mt-5 shrink-0 flex-col sm:w-[240px]",
         pathName !== "/dashboard" &&
           pathName !== "/dashboard/learn-how" &&
           pathName !== "/dashboard/passkeys" &&

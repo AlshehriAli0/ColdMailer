@@ -9,6 +9,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 import Footer from "@/components/footer";
 import SideBar from "@/components/sidebar";
+import RecoilContextProvider from "@/context/recoilContextProvider";
 
 const inter = Inter({
   subsets: ["latin-ext"],
@@ -26,23 +27,25 @@ export default function RootLayout({
   pageProps: AppProps;
 }) {
   return (
-    <ClerkProvider >
-      <html lang="en" className="!scroll-smooth">
-        <head>
-          <ColorSchemeScript />
-          <link rel="icon" href="coldMailerIcon.png" />
-          <meta charSet="utf-8" />
-        </head>
+    <ClerkProvider>
+      <RecoilContextProvider>
+        <html lang="en" className="!scroll-smooth">
+          <head>
+            <ColorSchemeScript />
+            <link rel="icon" href="coldMailerIcon.png" />
+            <meta charSet="utf-8" />
+          </head>
 
-        <body className={`bg-slate-950 font-sans ${inter.className}`}>
-          <MantineProvider>
-            <SideBar />
-            <Navbar />
-            {children}
-            <Footer />
-          </MantineProvider>
-        </body>
-      </html>
+          <body className={`bg-slate-950 font-sans ${inter.className}`}>
+            <MantineProvider>
+              <SideBar />
+              <Navbar />
+              {children}
+              <Footer />
+            </MantineProvider>
+          </body>
+        </html>
+      </RecoilContextProvider>
     </ClerkProvider>
   );
 }

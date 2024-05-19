@@ -1,6 +1,6 @@
 import React from "react";
 
-import { saveUser } from "@/server/actions";
+import { saveUser } from "@/server/save-user";
 
 export default function ToolPage() {
   void saveUser();
