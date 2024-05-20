@@ -11,8 +11,8 @@ export default function GridButtons() {
 
   return (
     <div
-      className="sticky top-0 z-10 grid w-[95%] grid-cols-5 bg-slate-950 gap-4 border-b border-white/10 px-12"
-      style={{ gridTemplateColumns: "1fr 1fr 1fr 1fr 0.1fr" }}
+      className="sticky top-0 z-10 grid w-[95%] grid-cols-5 bg-slate-950 ml-1 border-b border-white/10 px-12"
+      style={{ gridTemplateColumns: "1fr 1fr 1fr 1fr 0.4fr" }}
     >
       <div className="flex py-2">
         <div className="text-md flex items-center gap-2 rounded-md py-2 pl-1 pr-3 text-violet-400 transition hover:text-violet-300">

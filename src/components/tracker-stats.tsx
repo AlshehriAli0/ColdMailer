@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, memo } from "react";
 import { useRecoilValue } from "recoil";
 import {
   TotalAccepted,
@@ -10,7 +10,7 @@ import {
 } from "@/context/recoilContextProvider";
 import StatsSkeleton from "@/components/suspense/stats-skeleton";
 
-export default function TrackerStats() {
+const TrackerStats = memo(function TrackerStats() {
   const totalEmails = useRecoilValue(TotalEmails);
   const totalPending = useRecoilValue(TotalPending);
   const totalAccepted = useRecoilValue(TotalAccepted);
@@ -94,4 +94,6 @@ export default function TrackerStats() {
       </div>
     </section>
   );
-}
+});
+
+export default TrackerStats;

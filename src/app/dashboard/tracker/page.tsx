@@ -8,7 +8,7 @@ const Tracker = lazy(() => import("@/components/tracker"));
 
 export default function TrackerHome() {
   return (
-    <section className="no-scrollbar ml-[16.5rem] mt-[9rem] flex h-screen max-w-[79.7%] grow flex-col overflow-y-auto 2xl:w-[84%]">
+    <section className="no-scrollbar md:ml-[16.5rem] mt-[9rem] flex h-screen md:max-w-[79.7%] grow flex-col overflow-y-auto 2xl:w-[84%] mb-12">
       <div className="mb-12 flex flex-col">
         <h1 className="text-3xl font-semibold text-violet-300">
           Track All Sent Emails 📩
@@ -36,7 +36,7 @@ export default function TrackerHome() {
         >
           <GridButtons />
           <Tracker />
-          <div className="sticky bottom-0 h-20 w-full bg-gradient-to-t from-slate-950/95 to-transparent"></div>
+          <div className="fixed bottom-0 h-20 w-full bg-gradient-to-t from-slate-950/95 to-transparent"></div>
         </Suspense>
       </div>
     </section>

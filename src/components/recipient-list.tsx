@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, memo } from "react";
 import { type Recipient } from "@/lib/types";
 import {
   sortState,
@@ -12,6 +12,10 @@ import {
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { sortRecipients } from "@/utils/helpers";
 import { motion } from "framer-motion";
+import { BsThreeDots } from "react-icons/bs";
+import clsx from "clsx";
+
+const EditRecipient = React.lazy(() => import("@/components/edit-recipient"));
 
 interface RecipientListProps {
   initialRecipients: Recipient[];
@@ -35,10 +39,13 @@ const fadeInVarient = {
   }),
 };
 
-const RecipientList = React.memo(function RecipientList({
+const RecipientList = memo(function RecipientList({
   initialRecipients,
 }: RecipientListProps) {
   const [recipients, setRecipients] = useState<Recipient[]>(initialRecipients);
+  const [editingRecipient, setEditingRecipient] = useState<Recipient | null>(
+    null,
+  );
   const sortType = useRecoilValue(sortState);
   const setTotalEmails = useSetRecoilState(TotalEmails);
   const setTotalPending = useSetRecoilState(TotalPending);
@@ -88,17 +95,47 @@ const RecipientList = React.memo(function RecipientList({
           custom={index}
           transition={{ ease: "easeIn" }}
           key={index}
-          className="grid w-[95%] grid-cols-5 gap-4 border-b border-white/10 px-12 py-3 text-violet-200"
-          style={{ gridTemplateColumns: "1fr 1fr 1fr 1fr 0.1fr" }}
+          className={clsx(
+            "grid h-14 w-[95%] grid-cols-5 items-center justify-center gap-4 border-b border-white/10 px-12 text-violet-200 transition-all",
+            editingRecipient === recipient ? "bg-white/[0.075]" : "",
+          )}
+          style={{ gridTemplateColumns: "1fr 1fr 1fr 1fr 0.3fr" }}
         >
-          <p>{recipient.emailAddress}</p>
-          <p>{recipient.name}</p>
-          <p>{recipient.status}</p>
-          <p>
-            {typeof recipient.sentAt === "string"
-              ? recipient.sentAt
-              : new Date(recipient.sentAt).toLocaleString()}
-          </p>
+          {editingRecipient === recipient ? (
+            <EditRecipient
+              recipient={recipient}
+              setEditingRecipient={setEditingRecipient}
+            />
+          ) : (
+            <React.Fragment>
+              <p>{recipient.emailAddress}</p>
+              <p>{recipient.name}</p>
+              <p
+                className={clsx(
+                  recipient.status === "accepted" ? "text-green-500" : "",
+                  recipient.status === "pending" ? "text-gray-400" : "",
+                  recipient.status === "rejected" ? "text-red-500" : "",
+                )}
+              >
+                {recipient.status}
+              </p>
+              <p>
+                {typeof recipient.sentAt === "string"
+                  ? recipient.sentAt
+                  : new Date(recipient.sentAt).toLocaleDateString()}
+              </p>
+              <button
+                onClick={() => {
+                  setEditingRecipient(recipient);
+                }}
+                className="flex items-center justify-center rounded text-violet-400 transition hover:bg-white/5 hover:text-violet-200 "
+              >
+                <span className="p-1 text-lg">
+                  <BsThreeDots />
+                </span>
+              </button>
+            </React.Fragment>
+          )}
         </motion.div>
       ))}
     </section>

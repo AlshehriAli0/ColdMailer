@@ -1,3 +1,4 @@
+import { type Recipient } from "@/lib/types";
 import { verify } from "@/utils/verify";
 import { PrismaClient } from "@prisma/client";
 
@@ -7,7 +8,6 @@ const prisma = new PrismaClient();
 async function fetchData() {
   try {
     await prisma.$connect();
-    await new Promise((resolve) => setTimeout(resolve, 1000)); 
     const { token } = (await verify()) as { token: string };
     if (!token) {
       throw new Error("No token found");
@@ -27,7 +27,7 @@ async function fetchData() {
 
     const recipients = user.recipients;
     await prisma.$disconnect();
-    return recipients;
+    return recipients as Recipient[];
   } catch (error) {
     console.error("Error fetching recipients:", error);
     await prisma.$disconnect();
