@@ -27,7 +27,7 @@ export default function Menu() {
             borderLeft: "1px solid rgb(255 255 255 / 0.07)",
           },
           inner: {
-            marginTop: "64px",
+            marginTop: "80px",
             zIndex: 40,
           },
         }}

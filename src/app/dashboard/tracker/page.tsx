@@ -2,12 +2,13 @@ import React, { Suspense, lazy } from "react";
 
 import GridButtons from "@/components/grid-buttons";
 import Skeleton from "@/components/suspense/grid-skeleton";
+import TrackerStats from "@/components/tracker-stats";
 
 const Tracker = lazy(() => import("@/components/tracker"));
 
 export default function TrackerHome() {
   return (
-    <section className="no-scrollbar ml-[16.5rem] mt-[7.3rem] flex !h-[34.8rem] max-w-[79.7%] grow flex-col overflow-y-auto 2xl:w-[84%]">
+    <section className="no-scrollbar ml-[16.5rem] mt-[9rem] flex h-screen max-w-[79.7%] grow flex-col overflow-y-auto 2xl:w-[84%]">
       <div className="mb-12 flex flex-col">
         <h1 className="text-3xl font-semibold text-violet-300">
           Track All Sent Emails 📩
@@ -17,11 +18,11 @@ export default function TrackerHome() {
         </h2>
       </div>
       <div>
+        <TrackerStats />
         <Suspense
           fallback={
             <React.Fragment>
-              <Skeleton />
-              <Skeleton />
+              <GridButtons />
               <Skeleton />
               <Skeleton />
               <Skeleton />

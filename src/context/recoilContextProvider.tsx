@@ -7,6 +7,26 @@ export const sortState = atom({
   default: "",
 });
 
+export const TotalEmails = atom({
+  key: "TotalEmails",
+  default: 0,
+});
+
+export const TotalPending = atom({
+  key: "TotalPending",
+  default: 0,
+});
+
+export const TotalAccepted = atom({
+  key: "TotalAccepted",
+  default: 0,
+});
+
+export const TotalRejected = atom({
+  key: "TotalRejected",
+  default: 0,
+});
+
 export default function RecoilContextProvider({
   children,
 }: {

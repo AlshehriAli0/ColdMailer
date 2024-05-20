@@ -6,8 +6,8 @@ const prisma = new PrismaClient();
 // * Fetches the recipients for the current user
 async function fetchData() {
   try {
+    await prisma.$connect();
     await new Promise((resolve) => setTimeout(resolve, 1000)); 
-
     const { token } = (await verify()) as { token: string };
     if (!token) {
       throw new Error("No token found");
