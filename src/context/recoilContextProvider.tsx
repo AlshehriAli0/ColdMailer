@@ -1,6 +1,7 @@
 "use client";
 
 import { RecoilRoot, atom } from "recoil";
+import { type Recipient } from '@/lib/types';
 
 export const sortState = atom({
   key: "sortState",
@@ -25,6 +26,11 @@ export const TotalAccepted = atom({
 export const TotalRejected = atom({
   key: "TotalRejected",
   default: 0,
+});
+
+export const editRecipient = atom({
+  key: "editRecipient",
+  default: null as Recipient | null,
 });
 
 export default function RecoilContextProvider({

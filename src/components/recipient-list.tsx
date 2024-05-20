@@ -3,13 +3,14 @@
 import React, { useState, useEffect, memo } from "react";
 import { type Recipient } from "@/lib/types";
 import {
+  editRecipient,
   sortState,
   TotalAccepted,
   TotalEmails,
   TotalPending,
   TotalRejected,
 } from "@/context/recoilContextProvider";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { sortRecipients } from "@/utils/helpers";
 import { motion } from "framer-motion";
 import { BsThreeDots } from "react-icons/bs";
@@ -43,9 +44,8 @@ const RecipientList = memo(function RecipientList({
   initialRecipients,
 }: RecipientListProps) {
   const [recipients, setRecipients] = useState<Recipient[]>(initialRecipients);
-  const [editingRecipient, setEditingRecipient] = useState<Recipient | null>(
-    null,
-  );
+  const [editingRecipient, setEditingRecipient] =
+    useRecoilState<Recipient | null>(editRecipient);
   const sortType = useRecoilValue(sortState);
   const setTotalEmails = useSetRecoilState(TotalEmails);
   const setTotalPending = useSetRecoilState(TotalPending);
@@ -103,8 +103,6 @@ const RecipientList = memo(function RecipientList({
         >
           {editingRecipient === recipient ? (
             <EditRecipient
-              recipient={recipient}
-              setEditingRecipient={setEditingRecipient}
             />
           ) : (
             <React.Fragment>
@@ -128,7 +126,7 @@ const RecipientList = memo(function RecipientList({
                 onClick={() => {
                   setEditingRecipient(recipient);
                 }}
-                className="flex items-center justify-center rounded text-violet-400 transition hover:bg-white/5 hover:text-violet-200 "
+                className="flex w-10 h-8 items-center justify-center rounded text-violet-400 transition hover:bg-white/5 hover:text-violet-200 "
               >
                 <span className="p-1 text-lg">
                   <BsThreeDots />

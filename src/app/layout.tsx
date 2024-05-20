@@ -10,6 +10,7 @@ import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 import Footer from "@/components/footer";
 import SideBar from "@/components/sidebar";
 import RecoilContextProvider from "@/context/recoilContextProvider";
+import { Toaster } from "sonner";
 
 const inter = Inter({
   subsets: ["latin-ext"],
@@ -37,6 +38,8 @@ export default function RootLayout({
           </head>
 
           <body className={`bg-slate-950 font-sans ${inter.className}`}>
+            <Toaster />
+
             <MantineProvider>
               <SideBar />
               <Navbar />
