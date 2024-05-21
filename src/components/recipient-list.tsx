@@ -12,7 +12,7 @@ import {
 } from "@/context/recoilContextProvider";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { sortRecipients } from "@/utils/helpers";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { BsThreeDots } from "react-icons/bs";
 import clsx from "clsx";
 
@@ -31,10 +31,6 @@ const fadeInVarient = {
     opacity: 1,
     y: 0,
     transition: {
-      type: "spring",
-      stiffness: 200,
-      damping: 20,
-      mass: 0.5,
       delay: 0.08 * index,
     },
   }),
@@ -46,15 +42,12 @@ const RecipientList = memo(function RecipientList({
   const [recipients, setRecipients] = useState<Recipient[]>(initialRecipients);
   const [editingRecipient, setEditingRecipient] =
     useRecoilState<Recipient | null>(editRecipient);
+  const [itemPosition, setItemPosition] = useState({ x: 0, y: 0 }); 
   const sortType = useRecoilValue(sortState);
   const setTotalEmails = useSetRecoilState(TotalEmails);
   const setTotalPending = useSetRecoilState(TotalPending);
   const setTotalAccepted = useSetRecoilState(TotalAccepted);
   const setTotalRejected = useSetRecoilState(TotalRejected);
-
-  useEffect(() => {
-    setRecipients(sortRecipients(initialRecipients, sortType));
-  }, [sortType, initialRecipients]);
 
   useEffect(() => {
     setRecipients(sortRecipients(initialRecipients, sortType));
@@ -84,8 +77,14 @@ const RecipientList = memo(function RecipientList({
     setTotalRejected,
   ]);
 
+  const handleEditClick = (recipient: Recipient, event: React.MouseEvent) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    setItemPosition({ x: rect.left, y: rect.top });
+    setEditingRecipient(recipient);
+  };
+
   return (
-    <section id="recipients">
+    <section id="recipients" className="mb-8">
       {recipients.map((recipient, index) => (
         <motion.div
           variants={fadeInVarient}
@@ -96,44 +95,49 @@ const RecipientList = memo(function RecipientList({
           transition={{ ease: "easeIn" }}
           key={index}
           className={clsx(
-            "grid h-14 w-[95%] grid-cols-5 items-center justify-center gap-4 border-b border-white/10 px-12 text-violet-200 transition-all",
+            "h-14 w-[95%] border-b border-white/10 px-12 text-violet-200 transition-all ",
             editingRecipient === recipient ? "bg-white/[0.075]" : "",
           )}
-          style={{ gridTemplateColumns: "1fr 1fr 1fr 1fr 0.3fr" }}
         >
-          {editingRecipient === recipient ? (
-            <EditRecipient
-            />
-          ) : (
-            <React.Fragment>
-              <p>{recipient.emailAddress}</p>
-              <p>{recipient.name}</p>
-              <p
-                className={clsx(
-                  recipient.status === "accepted" ? "text-green-500" : "",
-                  recipient.status === "pending" ? "text-gray-400" : "",
-                  recipient.status === "rejected" ? "text-red-500" : "",
-                )}
+          <AnimatePresence>
+            {editingRecipient === recipient ? (
+              <EditRecipient
+                key="edit-recipient"
+                initialPosition={itemPosition}
+              />
+            ) : (
+              <motion.div
+                className="grid h-full grid-cols-5 gap-4 "
+                style={{ gridTemplateColumns: "1fr 1fr 1fr 1fr 0.3fr" }}
               >
-                {recipient.status}
-              </p>
-              <p>
-                {typeof recipient.sentAt === "string"
-                  ? recipient.sentAt
-                  : new Date(recipient.sentAt).toLocaleDateString()}
-              </p>
-              <button
-                onClick={() => {
-                  setEditingRecipient(recipient);
-                }}
-                className="flex w-10 h-8 items-center justify-center rounded text-violet-400 transition hover:bg-white/5 hover:text-violet-200 "
-              >
-                <span className="p-1 text-lg">
-                  <BsThreeDots />
+                <p className="flex items-center ">{recipient.emailAddress}</p>
+                <p className="flex items-center ">{recipient.name}</p>
+                <p
+                  className={clsx(
+                    recipient.status === "accepted" ? "text-green-500" : "",
+                    recipient.status === "pending" ? "text-gray-400" : "",
+                    recipient.status === "rejected" ? "text-red-500" : "",
+                    "flex items-center ",
+                  )}
+                >
+                  {recipient.status}
+                </p>
+                <p className="flex items-center ">
+                  {typeof recipient.sentAt === "string"
+                    ? recipient.sentAt
+                    : new Date(recipient.sentAt).toLocaleDateString()}
+                </p>
+                <span className="flex items-center justify-center">
+                  <button
+                    onClick={(event) => handleEditClick(recipient, event)}
+                    className="flex h-8 w-10 items-center justify-center rounded text-violet-400 transition hover:bg-white/5 hover:text-violet-200 "
+                  >
+                    <BsThreeDots />
+                  </button>
                 </span>
-              </button>
-            </React.Fragment>
-          )}
+              </motion.div>
+            )}
+          </AnimatePresence>
         </motion.div>
       ))}
     </section>
