@@ -25,6 +25,7 @@ export const updateRecipient = async (
       sentAt: z.string(),
     });
 
+
     const updatedRecipient = schema.parse(Object.fromEntries(formData));
 
     const result = schema.safeParse(updatedRecipient);

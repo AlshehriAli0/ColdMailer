@@ -1,9 +1,9 @@
-import { authMiddleware } from "@clerk/nextjs";
+import { auth } from "./middlewares/auth";
+import { rateLimiter } from "./middlewares/rate-limit";
+import { middlewareHandler } from "./middlewares/handler";
 
-export default authMiddleware({
-  publicRoutes: ["/", "sign-up", "sign-in"],
-});
+export const middleware = middlewareHandler([rateLimiter, auth]);
 
 export const config = {
-  matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/(api|trpc)(.*)"],
+  matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
 };

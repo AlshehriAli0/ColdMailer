@@ -1,5 +1,3 @@
-"use server";
-
 import { PrismaClient } from "@prisma/client";
 import { verify } from "@/utils/verify";
 import { validateEmail } from "@/utils/helpers";
@@ -48,8 +46,6 @@ export async function saveUser() {
       console.error("Error saving user:", error);
     }
   }
+
   return;
 }
-
-
-
