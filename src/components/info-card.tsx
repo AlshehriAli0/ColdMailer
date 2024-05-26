@@ -9,7 +9,7 @@ const Meteors = dynamic(() => import("@/ui/meteors"));
 export default function InfoCard() {
   return (
     <div id="learnMore" className=" my-24 mb-48 flex !scroll-mt-[8rem] justify-center">
-      <div className=" relative h-[42.5rem] w-full max-w-[85%] sm:h-[30rem] md:h-[24rem] xl:h-[19rem]">
+      <div className=" relative h-[42.5rem] xl:w-[75%] w-full max-w-[85%] sm:h-[30rem] md:h-[24rem] xl:h-[19rem]">
         <div className="w-100 absolute inset-0 h-full transform rounded-full bg-red-500 bg-gradient-to-r from-violet-500 to-purple-500 opacity-65 blur-3xl" />
         <div className="relative flex h-full flex-col items-start justify-end overflow-hidden rounded-2xl border border-gray-800 bg-slate-950/85 px-4 py-8 shadow-xl">
           <h1 className="absolute left-7 top-14 z-50 mx-2 -mt-4 text-xl font-medium tracking-tight text-violet-400 sm:left-12 sm:flex sm:text-2xl">
