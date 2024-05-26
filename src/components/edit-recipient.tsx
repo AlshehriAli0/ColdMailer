@@ -8,17 +8,20 @@ import { MdOutlineCancel } from "react-icons/md";
 import { useRecoilState } from "recoil";
 import { toast } from "sonner";
 import { motion, AnimatePresence } from "framer-motion";
+import { ZodIssue } from "zod";
 
 interface EditRecipientProps {
   initialPosition: { x: number; y: number };
 }
 
 export default function EditRecipient({ initialPosition }: EditRecipientProps) {
+  const [isResponseReceived, setIsResponseReceived] = useState(false);
   const [editedRecipient, setEditedRecipient] = useRecoilState(editRecipient);
   const [originalRecipient, setOriginalRecipient] = useState<Recipient | null>(
     null,
   );
   const [change, setChange] = useState(false);
+
   useEffect(() => {
     if (editedRecipient && !originalRecipient) {
       setOriginalRecipient({ ...editedRecipient });
@@ -78,7 +81,24 @@ export default function EditRecipient({ initialPosition }: EditRecipientProps) {
     if (!originalRecipient) return;
     const formData = new FormData(e.currentTarget);
 
-    await updateRecipient(originalRecipient, formData);
+
+    const resPromise = new Promise((resolve, reject) => {
+      updateRecipient(originalRecipient, formData)
+        .then((res) => {
+          resolve(res);
+          if (!res) throw new Error();
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+
+    toast.promise(resPromise, {
+      loading: "Updating Recipient",
+      success: "Recipient Updated",
+      error: "Too many requests, please try again later",
+      className: "bg-slate-900/95 text-violet-100 text-base border-white/10",
+    });
   };
 
   return (

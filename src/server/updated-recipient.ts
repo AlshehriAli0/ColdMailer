@@ -3,6 +3,7 @@
 import { z } from "zod";
 import { type Recipient } from "@/lib/types";
 import { PrismaClient } from "@prisma/client";
+import { as } from "node_modules/@upstash/redis/zmscore-d1ec861c";
 
 const prisma = new PrismaClient();
 
@@ -11,7 +12,6 @@ const statusTypeSchema = z.union([
   z.literal("pending"),
   z.literal("rejected"),
 ]);
-
 
 export const updateRecipient = async (
   originalRecipient: Recipient,
@@ -25,7 +25,6 @@ export const updateRecipient = async (
       sentAt: z.string(),
     });
 
-
     const updatedRecipient = schema.parse(Object.fromEntries(formData));
 
     const result = schema.safeParse(updatedRecipient);
@@ -36,21 +35,8 @@ export const updateRecipient = async (
 
     const { emailAddress, name, status, sentAt } = result.data;
 
-    const originalRecord = await prisma.recipient.findUnique({
-      where: {
-        id: originalRecipient.id,
-        emailAddress: originalRecipient.emailAddress,
-        name: originalRecipient.name,
-        sentAt: originalRecipient.sentAt,
-      },
-    });
-
-    if (!originalRecord) {
-      return false;
-    }
-
     const date = new Date(sentAt);
-    date.setHours(0, 0, 0, 0); 
+    date.setHours(0, 0, 0, 0);
     const isoDateTime = date.toISOString();
 
     await prisma.recipient.update({
@@ -67,8 +53,7 @@ export const updateRecipient = async (
 
     return true;
   } catch (error) {
-    console.log(error);
-    return false;
+    throw error;
   }
 };
 
