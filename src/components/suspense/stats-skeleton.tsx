@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function StatsSkeleton() {
   return (
-    <section className="mb-8 grid w-[95%] grid-cols-4 gap-4 text-violet-300 ">
+    <section className="mb-8 grid grid-cols-2 md:w-[95%] md:grid-cols-4 gap-4 text-violet-300 ">
       <div className="flex-1 rounded-xl border border-white/10">
         <div className="p-6">
           <h4 className="text-lg font-bold">Sent Emails</h4>

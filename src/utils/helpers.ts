@@ -9,7 +9,7 @@ export const sortRecipients = (recipients: Recipient[], sortBy: string) => {
   const sortedRecipients = [...recipients];
   if (sortBy === "email") {
     sortedRecipients.sort((a, b) =>
-      a.emailAddress.localeCompare(b.emailAddress),
+      a.email_address.localeCompare(b.email_address),
     );
   } else if (sortBy === "name") {
     sortedRecipients.sort((a, b) => a.name.localeCompare(b.name));
@@ -17,7 +17,7 @@ export const sortRecipients = (recipients: Recipient[], sortBy: string) => {
     sortedRecipients.sort((a, b) => a.status.localeCompare(b.status));
   } else if (sortBy === "sentAt") {
     sortedRecipients.sort(
-      (a, b) => new Date(a.sentAt).getTime() - new Date(b.sentAt).getTime(),
+      (a, b) => new Date(a.sent_at).getTime() - new Date(b.sent_at).getTime(),
     );
   }
   return sortedRecipients;

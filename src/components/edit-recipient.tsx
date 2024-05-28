@@ -7,13 +7,11 @@ import { IoMdSave } from "react-icons/io";
 import { MdOutlineCancel } from "react-icons/md";
 import { useRecoilState } from "recoil";
 import { toast } from "sonner";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
-interface EditRecipientProps {
-  initialPosition: { x: number; y: number };
-}
 
-export default function EditRecipient({ initialPosition }: EditRecipientProps) {
+
+export default function EditRecipient() {
   const [editedRecipient, setEditedRecipient] = useRecoilState(editRecipient);
   const [originalRecipient, setOriginalRecipient] = useState<Recipient | null>(
     null,
@@ -41,28 +39,29 @@ export default function EditRecipient({ initialPosition }: EditRecipientProps) {
     return null;
   }
 
-  const screenHeight = window.innerHeight;
-  const isAbove = initialPosition.y < screenHeight / 2;
 
   const animationVariants = {
     initial: {
       opacity: 0,
-      x: initialPosition.x * 0.1,
-      y: isAbove ? initialPosition.y * -0.2 : initialPosition.y * 0.2,
-      scale: 0.8,
+      y: 100,
+      scale: 0.9,
     },
     animate: {
-      opacity: 1,
-      x: 0,
       y: 0,
-      transition: { duration: 0.8 },
       scale: 1,
+      opacity: 1,
+      transition: {
+        duration: 0.1,
+        type: "spring",
+        stiffness: 250,
+        damping: 20,
+        mass: 0.3,
+      },
     },
     exit: {
       opacity: 0,
       y: 100,
-      transition: { duration: 0.5 },
-      scale: 0.8,
+      transition: { duration: 0.3 },
     },
   };
 
@@ -78,7 +77,6 @@ export default function EditRecipient({ initialPosition }: EditRecipientProps) {
 
     if (!originalRecipient) return;
     const formData = new FormData(e.currentTarget);
-
 
     const resPromise = new Promise((resolve, reject) => {
       updateRecipient(originalRecipient, formData)
@@ -100,9 +98,15 @@ export default function EditRecipient({ initialPosition }: EditRecipientProps) {
   };
 
   return (
-    <AnimatePresence>
+    <React.Fragment>
       {editedRecipient && (
-        <div className="fixed inset-0 z-50 h-screen w-screen backdrop-blur-lg">
+        <motion.div
+          className="fixed inset-0 z-50 h-screen w-screen backdrop-blur-lg"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.1 }}
+          exit={{ opacity: 0 }}
+        >
           <motion.form
             key="edit-recipient-form"
             variants={animationVariants}
@@ -197,8 +201,8 @@ export default function EditRecipient({ initialPosition }: EditRecipientProps) {
               </button>
             </div>
           </motion.form>
-        </div>
+        </motion.div>
       )}
-    </AnimatePresence>
+    </React.Fragment>
   );
 }

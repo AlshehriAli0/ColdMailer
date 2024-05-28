@@ -15,7 +15,7 @@ function SideBar() {
   return (
     <nav
       className={clsx(
-        "fixed !z-40 mt-[2rem] flex w-full shrink-0 flex-col bg-slate-950 sm:w-[240px]",
+        "md:fixed mt-24 -mb-24 md:!z-40 md:mt-[2rem] flex w-full shrink-0 flex-col bg-slate-950 md:w-[240px]",
         pathName !== "/dashboard" &&
           pathName !== "/dashboard/learn-how" &&
           pathName !== "/dashboard/passkeys" &&
@@ -24,7 +24,7 @@ function SideBar() {
           : null,
       )}
     >
-      <div className="flex flex-row justify-between gap-x-4 gap-y-2 p-4 text-center sm:flex-col sm:p-5 sm:text-left ">
+      <div className="flex flex-row justify-between gap-x-4 gap-y-2 p-4 text-center sm:p-5 md:flex-col md:text-left ">
         <Link
           href="/dashboard/tracker"
           className={clsx(

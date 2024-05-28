@@ -5,14 +5,14 @@ const Skeleton = () => {
 
   return (
     <section
-      className="grid w-[95%] grid-cols-5 gap-4 border-b border-white/10 px-12 py-3"
+      className="grid md:w-[95%] grid-cols-5 gap-4 border-b border-white/10 px-4 md:px-12 py-3"
       style={{ gridTemplateColumns: "1fr 1fr 1fr 1fr 0.1fr" }}
     >
       {[1, 2, 3, 4].map((index) => (
         <div
           key={index}
           className={`h-6 ${
-            index % 2 === 0 ? "w-[70%]" : "w-[60%]" 
+            index % 2 === 0 ? "md:w-[70%]" : "md:w-[60%]" 
           } animate-pulse rounded bg-gray-300/10 ${
             generateRowClass(index)
           }`}
