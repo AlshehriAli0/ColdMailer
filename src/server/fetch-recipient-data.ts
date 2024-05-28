@@ -1,7 +1,6 @@
 import { type Recipient } from "@/lib/types";
 import { verify } from "@/utils/verify";
 import { PrismaClient } from "@prisma/client";
-import { cache } from "react";
 
 const prisma = new PrismaClient();
 
@@ -24,7 +23,7 @@ async function getRecipientsFromDB(token: string): Promise<Recipient[]> {
   return recipients as Recipient[];
 }
 
-const fetchData = cache(async () => {
+async function fetchData() {
   try {
     const { token } = (await verify()) as { token: string };
     if (!token) {
@@ -37,6 +36,6 @@ const fetchData = cache(async () => {
     console.error("Error fetching recipients:", error);
     throw error;
   }
-});
+}
 
 export default fetchData;

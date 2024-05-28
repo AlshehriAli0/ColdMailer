@@ -1,8 +1,7 @@
 export type Recipient = {
   id: number;
-  emailAddress: string;
+  email_address: string;
   name: string;
   status: "accepted" | "pending" | "rejected";
-  sentAt: string | Date;
+  sent_at: string | Date;
 };
-
