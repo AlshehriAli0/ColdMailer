@@ -8,14 +8,12 @@ import { MdOutlineCancel } from "react-icons/md";
 import { useRecoilState } from "recoil";
 import { toast } from "sonner";
 import { motion, AnimatePresence } from "framer-motion";
-import { ZodIssue } from "zod";
 
 interface EditRecipientProps {
   initialPosition: { x: number; y: number };
 }
 
 export default function EditRecipient({ initialPosition }: EditRecipientProps) {
-  const [isResponseReceived, setIsResponseReceived] = useState(false);
   const [editedRecipient, setEditedRecipient] = useRecoilState(editRecipient);
   const [originalRecipient, setOriginalRecipient] = useState<Recipient | null>(
     null,
@@ -33,10 +31,10 @@ export default function EditRecipient({ initialPosition }: EditRecipientProps) {
   };
 
   const sentAtDate =
-    editedRecipient?.sentAt instanceof Date
-      ? editedRecipient.sentAt
-      : editedRecipient?.sentAt
-        ? new Date(editedRecipient.sentAt)
+    editedRecipient?.sent_at instanceof Date
+      ? editedRecipient.sent_at
+      : editedRecipient?.sent_at
+        ? new Date(editedRecipient.sent_at)
         : null;
 
   if (!editedRecipient) {
@@ -119,7 +117,7 @@ export default function EditRecipient({ initialPosition }: EditRecipientProps) {
               className="h-[65%] rounded border-none bg-transparent p-1 outline-none transition-all focus:outline-violet-200"
               type="email"
               name="emailAddress"
-              defaultValue={editedRecipient.emailAddress}
+              defaultValue={editedRecipient.email_address}
               onChange={() => {
                 if (!change) {
                   setChange(true);

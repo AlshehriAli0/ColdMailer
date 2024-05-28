@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { memo } from "react";
 import clsx from "clsx";
 
 import { FaChartBar } from "react-icons/fa6";
@@ -9,13 +9,13 @@ import { FaKey, FaBook } from "react-icons/fa";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 
-export default function SideBar() {
+function SideBar() {
   const pathName: string = usePathname();
 
   return (
     <nav
       className={clsx(
-        "fixed bg-slate-950 !z-40 flex w-full mt-[2rem] shrink-0 flex-col sm:w-[240px]",
+        "fixed !z-40 mt-[2rem] flex w-full shrink-0 flex-col bg-slate-950 sm:w-[240px]",
         pathName !== "/dashboard" &&
           pathName !== "/dashboard/learn-how" &&
           pathName !== "/dashboard/passkeys" &&
@@ -62,3 +62,5 @@ export default function SideBar() {
     </nav>
   );
 }
+
+export default memo(SideBar);

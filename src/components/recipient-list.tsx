@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, memo } from "react";
+import React, { useState, useEffect } from "react";
 import { type Recipient } from "@/lib/types";
 import {
   editRecipient,
@@ -12,7 +12,7 @@ import {
 } from "@/context/recoilContextProvider";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { sortRecipients } from "@/utils/helpers";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { BsThreeDots } from "react-icons/bs";
 import clsx from "clsx";
 
@@ -31,18 +31,21 @@ const fadeInVarient = {
     opacity: 1,
     y: 0,
     transition: {
-      delay: 0.08 * index,
+      delay: 0.1 * index,
+      type: "spring",
+      damping: 20,
+      stiffness: 200,
     },
   }),
 };
 
-const RecipientList = memo(function RecipientList({
+export default function RecipientList({
   initialRecipients,
 }: RecipientListProps) {
   const [recipients, setRecipients] = useState<Recipient[]>(initialRecipients);
   const [editingRecipient, setEditingRecipient] =
     useRecoilState<Recipient | null>(editRecipient);
-  const [itemPosition, setItemPosition] = useState({ x: 0, y: 0 }); 
+  const [itemPosition, setItemPosition] = useState({ x: 0, y: 0 });
   const sortType = useRecoilValue(sortState);
   const setTotalEmails = useSetRecoilState(TotalEmails);
   const setTotalPending = useSetRecoilState(TotalPending);
@@ -90,16 +93,13 @@ const RecipientList = memo(function RecipientList({
           variants={fadeInVarient}
           initial="initial"
           animate="animate"
-          viewport={{ once: true }}
           custom={index}
-          transition={{ ease: "easeIn" }}
           key={index}
           className={clsx(
             "h-14 w-[95%] border-b border-white/10 px-12 text-violet-200 transition-all ",
             editingRecipient === recipient ? "bg-white/[0.075]" : "",
           )}
         >
-          <AnimatePresence>
             {editingRecipient === recipient ? (
               <EditRecipient
                 key="edit-recipient"
@@ -110,7 +110,7 @@ const RecipientList = memo(function RecipientList({
                 className="grid h-full grid-cols-5 gap-4 "
                 style={{ gridTemplateColumns: "1fr 1fr 1fr 1fr 0.3fr" }}
               >
-                <p className="flex items-center ">{recipient.emailAddress}</p>
+                <p className="flex items-center ">{recipient.email_address}</p>
                 <p className="flex items-center ">{recipient.name}</p>
                 <p
                   className={clsx(
@@ -123,9 +123,9 @@ const RecipientList = memo(function RecipientList({
                   {recipient.status}
                 </p>
                 <p className="flex items-center ">
-                  {typeof recipient.sentAt === "string"
-                    ? recipient.sentAt
-                    : new Date(recipient.sentAt).toLocaleDateString()}
+                  {typeof recipient.sent_at === "string"
+                    ? recipient.sent_at
+                    : new Date(recipient.sent_at).toLocaleDateString()}
                 </p>
                 <span className="flex items-center justify-center">
                   <button
@@ -137,11 +137,8 @@ const RecipientList = memo(function RecipientList({
                 </span>
               </motion.div>
             )}
-          </AnimatePresence>
         </motion.div>
       ))}
     </section>
   );
-});
-
-export default RecipientList;
+}

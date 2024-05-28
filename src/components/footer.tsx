@@ -1,11 +1,11 @@
 "use client";
 
-import React from "react";
+import React, { memo } from "react";
 
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
 
-export default function Footer() {
+function Footer() {
   const pathName: string = usePathname();
   const year: number = new Date().getFullYear();
   return (
@@ -26,3 +26,5 @@ export default function Footer() {
     </footer>
   );
 }
+
+export default memo(Footer);

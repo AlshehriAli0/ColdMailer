@@ -1,21 +1,21 @@
 "use client";
 
 import Link from "next/link";
-import React from "react";
+import React, { memo, lazy } from "react";
 
 import clsx from "clsx";
 import { motion } from "framer-motion";
 import { GiIceCube } from "react-icons/gi";
 import { usePathname } from "next/navigation";
-import Menu from "./menu";
+const Menu = lazy(() => import("./menu"));
 
-export default function Navbar() {
+function Navbar() {
   const pathName: string = usePathname();
 
   return (
     <nav
       className={clsx(
-        " top-0 !z-50 mx-auto flex h-20 !w-full items-center justify-between sm:px-12 px-6 ",
+        " top-0 !z-50 mx-auto flex h-20 !w-full items-center justify-between px-6 sm:px-12 ",
         pathName !== "/" &&
           !pathName.startsWith("/sign-up") &&
           !pathName.startsWith("/sign-in")
@@ -27,6 +27,7 @@ export default function Navbar() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.35, delay: 0.35 }}
+        viewport={{ once: true }}
       >
         <Link
           href="/"
@@ -49,3 +50,5 @@ export default function Navbar() {
     </nav>
   );
 }
+
+export default memo(Navbar);
