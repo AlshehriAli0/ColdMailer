@@ -11,7 +11,7 @@ export default function GridButtons() {
 
   return (
     <div
-      className="sticky top-0 z-10 grid grid-cols-5 border-b border-white/10 bg-slate-950 md:mx-0 w-[95%] md:gap-4 mx-2 md:px-12"
+      className="sticky top-0 z-10 grid w-full grid-cols-5 border-b border-white/10 bg-slate-950 md:mx-0 md:w-[95%] md:gap-4 md:px-12"
       style={{ gridTemplateColumns: "4fr 4fr 1fr 1fr 0.3fr" }}
     >
       <div className="mx-auto flex scale-90 py-2 md:mx-0 md:scale-100">
@@ -49,7 +49,7 @@ export default function GridButtons() {
           <span className="-mr-1 text-base md:mr-0  md:text-lg">Sent</span>
           <FaSort />
         </button>
-        <div className="sm:flex hidden">h</div>
+        <div className="hidden sm:flex">h</div>
       </div>
     </div>
   );
