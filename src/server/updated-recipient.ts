@@ -3,6 +3,7 @@
 import { z } from "zod";
 import type { Recipient } from "@/lib/types";
 import { db } from "./db";
+import { revalidatePath } from "next/cache";
 
 const prisma = db;
 
@@ -49,6 +50,7 @@ export const updateRecipient = async (
         sent_at: isoDateTime,
       },
     });
+    revalidatePath("/dashboard/tracker");
 
     return true;
   } catch (error) {

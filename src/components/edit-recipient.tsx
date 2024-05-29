@@ -1,4 +1,3 @@
-"use client";
 import { editRecipient } from "@/context/recoilContextProvider";
 import type { Recipient } from "@/lib/types";
 import updateRecipient from "@/server/updated-recipient";
@@ -7,9 +6,7 @@ import { IoMdSave } from "react-icons/io";
 import { MdOutlineCancel } from "react-icons/md";
 import { useRecoilState } from "recoil";
 import { toast } from "sonner";
-import { motion } from "framer-motion";
-
-
+import { AnimatePresence, motion } from "framer-motion";
 
 export default function EditRecipient() {
   const [editedRecipient, setEditedRecipient] = useRecoilState(editRecipient);
@@ -17,6 +14,7 @@ export default function EditRecipient() {
     null,
   );
   const [change, setChange] = useState(false);
+  const [cancel, setCancel] = useState(false);
 
   useEffect(() => {
     if (editedRecipient && !originalRecipient) {
@@ -25,7 +23,10 @@ export default function EditRecipient() {
   }, [editedRecipient, originalRecipient]);
 
   const handleCancel = () => {
-    setEditedRecipient(null);
+    setCancel(true);
+    setTimeout(() => {
+      setEditedRecipient(null);
+    }, 100);
   };
 
   const sentAtDate =
@@ -38,7 +39,6 @@ export default function EditRecipient() {
   if (!editedRecipient) {
     return null;
   }
-
 
   const animationVariants = {
     initial: {
@@ -60,8 +60,15 @@ export default function EditRecipient() {
     },
     exit: {
       opacity: 0,
+      scale: 0.9,
       y: 100,
-      transition: { duration: 0.3 },
+      transition: {
+        duration: 0.2,
+        type: "spring",
+        stiffness: 250,
+        damping: 20,
+        mass: 0.3,
+      },
     },
   };
 
@@ -77,6 +84,7 @@ export default function EditRecipient() {
 
     if (!originalRecipient) return;
     const formData = new FormData(e.currentTarget);
+    handleCancel();
 
     const resPromise = new Promise((resolve, reject) => {
       updateRecipient(originalRecipient, formData)
@@ -98,9 +106,10 @@ export default function EditRecipient() {
   };
 
   return (
-    <React.Fragment>
-      {editedRecipient && (
+    <AnimatePresence mode="wait">
+      {editedRecipient && !cancel && (
         <motion.div
+          key="backdrop"
           className="fixed inset-0 z-50 h-screen w-screen backdrop-blur-lg"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -108,7 +117,7 @@ export default function EditRecipient() {
           exit={{ opacity: 0 }}
         >
           <motion.form
-            key="edit-recipient-form"
+            key="form"
             variants={animationVariants}
             initial="initial"
             animate="animate"
@@ -203,6 +212,6 @@ export default function EditRecipient() {
           </motion.form>
         </motion.div>
       )}
-    </React.Fragment>
+    </AnimatePresence>
   );
 }

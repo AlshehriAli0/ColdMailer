@@ -51,6 +51,8 @@ export default function RecipientList({
   const setTotalAccepted = useSetRecoilState(TotalAccepted);
   const setTotalRejected = useSetRecoilState(TotalRejected);
 
+  
+
   useEffect(() => {
     setRecipients(sortRecipients(initialRecipients, sortType));
   }, [sortType, initialRecipients]);
@@ -82,6 +84,7 @@ export default function RecipientList({
   const handleEditClick = (recipient: Recipient) => {
     setEditingRecipient(recipient);
   };
+
 
   return (
     <section id="recipients" className="mb-8">
