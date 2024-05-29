@@ -26,7 +26,7 @@ export default function EditRecipient() {
     setCancel(true);
     setTimeout(() => {
       setEditedRecipient(null);
-    }, 100);
+    }, 150);
   };
 
   const sentAtDate =
@@ -109,7 +109,7 @@ export default function EditRecipient() {
       {editedRecipient && !cancel && (
         <motion.div
           key="backdrop"
-          className="fixed inset-0 z-50 h-screen w-screen backdrop-blur-lg"
+          className="fixed inset-0 z-50 h-screen w-screen backdrop-blur-lg safari-blur"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.1 }}
