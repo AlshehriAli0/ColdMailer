@@ -1,6 +1,6 @@
 import type { Recipient } from "@/lib/types";
 import { verify } from "@/utils/verify";
-import { PrismaClient } from "@prisma/client/edge";
+import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
