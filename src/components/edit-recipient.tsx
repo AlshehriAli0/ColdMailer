@@ -63,7 +63,6 @@ export default function EditRecipient() {
       scale: 0.9,
       y: 100,
       transition: {
-        duration: 0.2,
         type: "spring",
         stiffness: 250,
         damping: 20,
