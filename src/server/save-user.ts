@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "@prisma/client/edge";
 import { verify } from "@/utils/verify";
 import { validateEmail } from "@/utils/helpers";
 

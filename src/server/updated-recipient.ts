@@ -2,7 +2,7 @@
 
 import { z } from "zod";
 import type { Recipient } from "@/lib/types";
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "@prisma/client/edge";
 
 const prisma = new PrismaClient();
 
