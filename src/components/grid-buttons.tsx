@@ -11,42 +11,42 @@ export default function GridButtons() {
 
   return (
     <div
-      className="sticky top-0 z-10 ml-1 grid grid-cols-5 border-b border-white/10 bg-slate-950 md:w-[95%] md:px-12"
-      style={{ gridTemplateColumns: "1fr 1fr 1fr 1fr 0.4fr" }}
+      className="sticky top-0 z-10 mx-2 grid grid-cols-5 border-b border-white/10 bg-slate-950 md:w-[95%] md:gap-4 md:px-12"
+      style={{ gridTemplateColumns: "4fr 4fr 1fr 1fr 0.3fr" }}
     >
-      <div className="flex py-2">
+      <div className="mx-auto flex scale-90 py-2 md:mx-0 md:scale-100">
         <button
           className="flex items-center gap-2 rounded-md py-2 pl-1 pr-3 text-base text-violet-400 transition hover:bg-white/10 hover:text-violet-300 md:text-lg"
           onClick={() => setSortType("email")}
         >
-          <span className="text-base md:text-lg">Email</span>
+          <span className="-mr-1 text-base  md:text-lg">Email</span>
           <FaSort />
         </button>
       </div>
-      <div className="flex py-2">
+      <div className="mx-auto flex w-fit scale-90 py-2 md:mx-0 md:scale-100">
         <button
           className="flex items-center gap-2 rounded-md py-2 pl-1 pr-3 text-base text-violet-400 transition hover:bg-white/10 hover:text-violet-300 md:text-lg"
           onClick={() => setSortType("name")}
         >
-          <span className="text-base md:text-lg">Name</span>
+          <span className="-mr-1 text-base md:text-lg">Name</span>
           <FaSort />
         </button>
       </div>
-      <div className="flex py-2 ">
+      <div className="mx-auto flex scale-90 py-2 md:mx-0 md:scale-100">
         <button
           className="flex items-center gap-2 rounded-md py-2 pl-1 pr-3 text-base text-violet-400 transition hover:bg-white/10 hover:text-violet-300 md:text-lg"
           onClick={() => setSortType("status")}
         >
-          <span className="text-base md:text-lg">Status</span>
+          <span className="-mr-1 text-base  md:text-lg">Status</span>
           <FaSort />
         </button>
       </div>
-      <div className="flex py-2 ">
+      <div className="mx-auto flex scale-90 py-2 md:mx-0 md:scale-100">
         <button
           className="flex items-center gap-2 rounded-md py-2 pl-1 pr-3 text-base text-violet-400 transition hover:bg-white/10 hover:text-violet-300 md:text-lg"
           onClick={() => setSortType("sentAt")}
         >
-          <span className="text-base md:text-lg">Sent</span>
+          <span className="-mr-1 text-base  md:text-lg">Sent</span>
           <FaSort />
         </button>
       </div>

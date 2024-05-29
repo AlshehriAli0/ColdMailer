@@ -121,12 +121,12 @@ export default function EditRecipient() {
             initial="initial"
             animate="animate"
             exit="exit"
-            className="absolute inset-0 left-[5%] top-[50%] z-[99] grid h-14 w-[90%] items-center gap-4 rounded border border-white/5 bg-white/[0.08] px-12 shadow-2xl"
+            className="absolute inset-0 z-[99] mx-8 my-auto md:my-0 flex h-[45%] flex-col items-center justify-center gap-4 gap-x-9 gap-y-4 rounded border border-white/5 bg-white/[0.08] px-12 shadow-2xl md:left-[5%] md:top-[50%] md:mx-0 md:grid md:h-14 md:w-[90%]"
             style={{ gridTemplateColumns: "1fr 1fr 1fr 1fr 0.3fr" }}
             onSubmit={(e) => formAction(e)}
           >
             <input
-              className="h-[65%] rounded border-none bg-transparent p-1 outline-none transition-all focus:outline-violet-200"
+              className="h-[15%] w-[80%] rounded border-2 border-white/5 bg-transparent p-1 outline-none transition-all focus:border-none focus:outline-violet-200 md:h-[65%] md:w-full"
               type="email"
               name="emailAddress"
               defaultValue={editedRecipient.email_address}
@@ -139,7 +139,7 @@ export default function EditRecipient() {
             />
 
             <input
-              className="rounded border-none bg-transparent p-1 outline-none transition-all focus:outline-violet-200"
+              className="h-[15%] w-[80%] rounded border-2 border-white/5 bg-transparent p-1 outline-none transition-all focus:border-none focus:outline-violet-200 md:h-[65%] md:w-full"
               type="text"
               name="name"
               onChange={() => {
@@ -151,7 +151,7 @@ export default function EditRecipient() {
             />
 
             <select
-              className="rounded border-none bg-transparent p-1 outline-none transition-all focus:outline-violet-200"
+              className="h-[15%] w-[80%] rounded border-2 border-white/5 bg-transparent p-1 outline-none transition-all focus:border-none focus:outline-violet-200 md:h-[65%] md:w-full"
               name="status"
               defaultValue={editedRecipient.status}
               onChange={() => {
@@ -180,7 +180,7 @@ export default function EditRecipient() {
 
             <div className="flex items-center gap-2">
               <input
-                className="rounded border-none bg-transparent p-1 outline-none transition-all focus:outline-violet-200"
+                className="w-[100%] rounded border-2 border-white/5 bg-transparent p-1 outline-none transition-all focus:border-none focus:outline-violet-200 md:h-[65%]"
                 type="date"
                 name="sentAt"
                 defaultValue={sentAtDate?.toISOString().split("T")[0] ?? ""}
@@ -196,16 +196,20 @@ export default function EditRecipient() {
             <div className="flex items-center justify-end gap-3">
               <button
                 type="submit"
-                className="rounded p-1 text-2xl text-violet-200 transition hover:bg-white/5"
+                className="group rounded border-2 border-white/5 px-5 py-2 text-2xl text-violet-200 transition hover:bg-white/5 active:scale-90 md:p-1"
               >
-                <IoMdSave />
+                <div className="transition-all active:scale-100 group-hover:scale-[1.17]">
+                  <IoMdSave />
+                </div>
               </button>
               <button
                 type="button"
                 onClick={handleCancel}
-                className="rounded p-1 text-2xl text-violet-200 transition hover:bg-white/5"
+                className="group rounded border-2 border-white/5 px-5 py-2 text-2xl text-violet-200 transition hover:bg-white/5 active:scale-90 md:p-1"
               >
-                <MdOutlineCancel />
+                <div className="transition-all active:scale-100 group-hover:scale-[1.17]">
+                  <MdOutlineCancel />
+                </div>
               </button>
             </div>
           </motion.form>

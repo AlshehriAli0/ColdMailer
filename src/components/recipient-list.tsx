@@ -34,7 +34,6 @@ const fadeInVarient = {
       delay: 0.15 * index,
       duration: 0.15,
       type: "spring",
-      
     },
   }),
 };
@@ -85,7 +84,7 @@ export default function RecipientList({
 
   return (
     <section id="recipients" className="mb-8">
-      <AnimatePresence>
+      <AnimatePresence mode="wait">
         {recipients.map((recipient, index) => (
           <motion.div
             variants={fadeInVarient}
@@ -94,7 +93,7 @@ export default function RecipientList({
             custom={index}
             key={index}
             className={clsx(
-              "h-14 border-b border-white/10 px-2 text-violet-200 transition-all md:w-[95%] md:px-12 ",
+              "h-14 border-b border-white/10 px-2 text-violet-200 transition-all md:px-12 w-[95%]",
               editingRecipient === recipient ? "bg-white/[0.075]" : "",
             )}
           >
@@ -103,33 +102,33 @@ export default function RecipientList({
             ) : (
               <motion.div
                 className="grid h-full grid-cols-5 gap-4 text-center"
-                style={{ gridTemplateColumns: "1fr 1fr 1fr 1fr 0.3fr" }}
+                style={{ gridTemplateColumns: "4fr 4fr 1fr 1fr 0.3fr" }}
               >
-                <p className="mx-auto flex items-center text-sm md:mx-0 md:text-base">
+                <p className="no-scrollbar mx-auto flex md:min-w-fit w-[5rem] items-center overflow-x-auto whitespace-nowrap text-xs sm:text-sm md:mx-0 md:w-full md:text-base ">
                   {recipient.email_address}
                 </p>
-                <p className="mx-auto flex items-center text-sm md:mx-0 md:text-base">
+                <p className="no-scrollbar mx-auto flex w-12 items-center overflow-x-auto whitespace-nowrap text-xs sm:text-sm md:mx-0 md:w-full md:text-base md:ml-2">
                   {recipient.name}
                 </p>
                 <p
                   className={clsx(
-                    recipient.status === "accepted" ? "text-green-500" : "",
-                    recipient.status === "pending" ? "text-gray-400" : "",
-                    recipient.status === "rejected" ? "text-red-500" : "",
-                    "flex items-center text-sm md:text-base",
+                    recipient.status === "accepted" ? "bg-green-500/15" : "",
+                    recipient.status === "pending" ? "bg-gray-400/15" : "",
+                    recipient.status === "rejected" ? "bg-red-500/15" : "",
+                    "relative -mx-2 md:w-fit my-auto flex w-fit h-[65%] items-center rounded-lg px-1 text-center text-xs md:mx-auto md:px-4 md:text-base ",
                   )}
                 >
                   {recipient.status}
                 </p>
-                <p className="mx-auto flex items-center text-sm md:mx-0 md:text-base">
+                <p className="mx-auto flex items-center text-xs sm:text-sm md:mx-0 md:text-base">
                   {typeof recipient.sent_at === "string"
                     ? recipient.sent_at
                     : new Date(recipient.sent_at).toLocaleDateString()}
                 </p>
-                <span className="mx-auto flex items-center text-xs md:mx-0 md:text-base">
+                <span className="mx-auto flex items-center text-xs sm:text-sm md:mx-0 md:text-base">
                   <button
                     onClick={() => handleEditClick(recipient)}
-                    className="flex h-8 w-10 items-center justify-center rounded text-violet-400 transition hover:bg-white/5 hover:text-violet-200 "
+                    className="-ml-2 md:-ml-0 flex h-6 w-6 items-center justify-center rounded text-violet-400  transition-all hover:scale-[1.17] hover:bg-white/5 hover:text-violet-200 active:scale-100 md:w-10"
                   >
                     <BsThreeDots />
                   </button>
