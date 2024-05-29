@@ -1,6 +1,6 @@
 "use client";
 import { editRecipient } from "@/context/recoilContextProvider";
-import { type Recipient } from "@/lib/types";
+import type { Recipient } from "@/lib/types";
 import updateRecipient from "@/server/updated-recipient";
 import React, { useEffect, useState } from "react";
 import { IoMdSave } from "react-icons/io";

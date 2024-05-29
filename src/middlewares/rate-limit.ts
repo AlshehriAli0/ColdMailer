@@ -1,9 +1,7 @@
 import { rateLimit } from "@/utils/ratelimit";
-import {
-  type NextRequest,
-  NextResponse,
-  type NextFetchEvent,
-} from "next/server";
+import { NextResponse } from "next/server";
+
+import type { NextFetchEvent, NextRequest } from "next/server";
 import type { MiddlewareWrapperType } from "./types";
 
 export const rateLimiter: MiddlewareWrapperType = (next) => {

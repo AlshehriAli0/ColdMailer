@@ -1,4 +1,4 @@
-import { type Recipient } from "@/lib/types";
+import type { Recipient } from "@/lib/types";
 
 export function validateEmail(email: string) {
   const re =

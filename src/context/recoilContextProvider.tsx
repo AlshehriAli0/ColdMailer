@@ -1,7 +1,7 @@
 "use client";
 
 import { RecoilRoot, atom } from "recoil";
-import { type Recipient } from '@/lib/types';
+import type { Recipient } from "@/lib/types";
 
 export const sortState = atom({
   key: "sortState",

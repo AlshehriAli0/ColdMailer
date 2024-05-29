@@ -1,5 +1,5 @@
 import type { NextFetchEvent, NextRequest } from "next/server";
-import { type NextResponse } from "next/server";
+import type { NextResponse } from "next/server";
 import type { NextMiddlewareResult } from "next/dist/server/web/types";
 
 export type MiddlewareWrapperType = (

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { type Recipient } from "@/lib/types";
+import type { Recipient } from "@/lib/types";
 import {
   editRecipient,
   sortState,

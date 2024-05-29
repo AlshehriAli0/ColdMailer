@@ -1,9 +1,8 @@
 "use server";
 
 import { z } from "zod";
-import { type Recipient } from "@/lib/types";
+import type { Recipient } from "@/lib/types";
 import { PrismaClient } from "@prisma/client";
-import { as } from "node_modules/@upstash/redis/zmscore-d1ec861c";
 
 const prisma = new PrismaClient();
 
@@ -44,10 +43,10 @@ export const updateRecipient = async (
         id: originalRecipient.id,
       },
       data: {
-        emailAddress,
+        email_address: emailAddress,
         name,
         status,
-        sentAt: isoDateTime,
+        sent_at: isoDateTime,
       },
     });
 

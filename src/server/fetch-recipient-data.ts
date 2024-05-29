@@ -1,4 +1,4 @@
-import { type Recipient } from "@/lib/types";
+import type { Recipient } from "@/lib/types";
 import { verify } from "@/utils/verify";
 import { PrismaClient } from "@prisma/client";
 
