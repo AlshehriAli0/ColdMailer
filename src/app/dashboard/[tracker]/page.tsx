@@ -36,7 +36,7 @@ export default function TrackerHome() {
         >
           <GridButtons />
           <Tracker />
-          <div className="fixed bottom-0 h-20 w-full bg-gradient-to-t from-slate-950/95 to-transparent"></div>
+          <div className="fixed bottom-0 h-20 w-full bg-gradient-to-t from-slate-950/95 to-transparent pointer-events-none"></div>
         </Suspense>
       </div>
     </section>

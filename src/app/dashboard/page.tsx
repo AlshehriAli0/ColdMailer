@@ -1,7 +1,5 @@
-import { redirect } from 'next/navigation'
-import React from 'react'
+import { redirect } from "next/navigation";
 
 export default function Dashboard() {
-  redirect('/dashboard/tracker')
-  
+  redirect("/dashboard/tracker");
 }
