@@ -2,9 +2,9 @@
 
 import { z } from "zod";
 import type { Recipient } from "@/lib/types";
-import { PrismaClient } from "@prisma/client";
+import { db } from "./db";
 
-const prisma = new PrismaClient();
+const prisma = db;
 
 const statusTypeSchema = z.union([
   z.literal("accepted"),

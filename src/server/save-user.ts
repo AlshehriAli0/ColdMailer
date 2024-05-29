@@ -1,6 +1,6 @@
-import { PrismaClient } from "@prisma/client";
 import { verify } from "@/utils/verify";
 import { validateEmail } from "@/utils/helpers";
+import { db } from "./db";
 
 export async function saveUser() {
   const { email, name, id, token } = await verify();
@@ -10,7 +10,7 @@ export async function saveUser() {
   }
   if (validateEmail(email)) {
     try {
-      const prisma = new PrismaClient();
+      const prisma = db;
       const existingUser = await prisma.user.findUnique({
         where: { id },
       });
