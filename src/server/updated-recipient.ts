@@ -1,7 +1,7 @@
 "use server";
 
 import { z } from "zod";
-import type { Recipient } from "@/lib/types";
+import { createServerAction } from "zsa";
 import { db } from "./db";
 import { revalidatePath } from "next/cache";
 
@@ -13,49 +13,40 @@ const statusTypeSchema = z.union([
   z.literal("rejected"),
 ]);
 
-export const updateRecipient = async (
-  originalRecipient: Recipient,
-  formData: FormData,
-) => {
-  try {
-    const schema = z.object({
+export const updateRecipient = createServerAction()
+  .input(
+    z.object({
+      id: z.number(),
       emailAddress: z.string().email(),
       name: z.string().optional(),
       status: statusTypeSchema,
       sentAt: z.string(),
-    });
-
-    const updatedRecipient = schema.parse(Object.fromEntries(formData));
-
-    const result = schema.safeParse(updatedRecipient);
-
-    if (!result.success) {
-      return result.error.issues;
-    }
-
-    const { emailAddress, name, status, sentAt } = result.data;
+    }),
+  )
+  .handler(async ({ input }) => {
+    const { id, emailAddress, name, status, sentAt } = input;
 
     const date = new Date(sentAt);
     date.setHours(0, 0, 0, 0);
     const isoDateTime = date.toISOString();
-
-    await prisma.recipient.update({
-      where: {
-        id: originalRecipient.id,
-      },
-      data: {
-        email_address: emailAddress,
-        name,
-        status,
-        sent_at: isoDateTime,
-      },
-    });
-    revalidatePath("/dashboard/tracker");
-
-    return true;
-  } catch (error) {
-    throw error;
-  }
-};
+    try {
+      await prisma.recipient.update({
+        where: {
+          id,
+        },
+        data: {
+          email_address: emailAddress,
+          name,
+          status,
+          sent_at: isoDateTime,
+        },
+      });
+      revalidatePath("/dashboard/tracker");
+      return { data: true };
+    } catch (error) {
+      console.error("Error updating recipient:", error);
+      return { data: false, error: "Too many requests, please try again later" };
+    }
+  });
 
 export default updateRecipient;

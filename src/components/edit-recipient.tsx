@@ -85,18 +85,22 @@ export default function EditRecipient() {
     const formData = new FormData(e.currentTarget);
     handleCancel();
 
-    const resPromise = new Promise((resolve, reject) => {
-      updateRecipient(originalRecipient, formData)
-        .then((res) => {
-          resolve(res);
-          if (!res) throw new Error();
-        })
-        .catch((err) => {
-          reject(err);
-        });
+    const updateObj = {
+      id: originalRecipient.id,
+      emailAddress: formData.get("emailAddress") as string,
+      name: formData.get("name") as string,
+      status: formData.get("status") as "accepted" | "pending" | "rejected",
+      sentAt: formData.get("sentAt") as string,
+    };
+
+    const updatePromise = updateRecipient(updateObj).then((response) => {
+      if (response[1]) {
+        throw new Error(response[1].message);
+      }
+      return response;
     });
 
-    toast.promise(resPromise, {
+    toast.promise(updatePromise, {
       loading: "Updating Recipient",
       success: "Recipient Updated",
       error: "Too many requests, please try again later",
@@ -109,7 +113,7 @@ export default function EditRecipient() {
       {editedRecipient && !cancel && (
         <motion.div
           key="backdrop"
-          className="fixed inset-0 z-50 h-screen w-screen backdrop-blur-lg safari-blur"
+          className="safari-blur fixed inset-0 z-50 h-screen w-screen backdrop-blur-lg"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.1 }}
@@ -121,7 +125,7 @@ export default function EditRecipient() {
             initial="initial"
             animate="animate"
             exit="exit"
-            className="absolute inset-0 z-[99] mx-8 my-auto md:my-0 flex h-[45%] flex-col items-center justify-center gap-4 gap-x-9 gap-y-4 rounded border border-white/5 bg-white/[0.08] px-12 shadow-2xl md:left-[5%] md:top-[50%] md:mx-0 md:grid md:h-14 md:w-[90%]"
+            className="absolute inset-0 z-[99] mx-8 my-auto flex h-[45%] flex-col items-center justify-center gap-4 gap-x-9 gap-y-4 rounded border border-white/5 bg-white/[0.08] px-12 shadow-2xl md:left-[5%] md:top-[50%] md:mx-0 md:my-0 md:grid md:h-14 md:w-[90%]"
             style={{ gridTemplateColumns: "1fr 1fr 1fr 1fr 0.3fr" }}
             onSubmit={(e) => formAction(e)}
           >
