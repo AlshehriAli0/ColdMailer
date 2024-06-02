@@ -5,5 +5,5 @@ import { middlewareHandler } from "./middlewares/handler";
 export const middleware = middlewareHandler([rateLimiter, auth]);
 
 export const config = {
-  matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
+  matcher: ["/((?!.+\\.[\\w]+$|_next|/|/sign-in|sign-up).*)", "/(api|trpc)(.*)"],
 };
