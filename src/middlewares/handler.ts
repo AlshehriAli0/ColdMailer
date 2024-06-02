@@ -1,5 +1,6 @@
 import type { NextRequest, NextFetchEvent, NextResponse } from "next/server";
 import type { MiddlewareWrapperType, ChainMiddlewareType } from "./types";
+import { isLighthouse } from "./lighthouse";
 
 export function middlewareHandler(
   middlewares: Array<MiddlewareWrapperType>,
@@ -9,6 +10,10 @@ export function middlewareHandler(
   if (current) {
     const next = middlewareHandler(middlewares, i + 1);
     return (req: NextRequest, evt: NextFetchEvent, res: NextResponse) => {
+
+      if (isLighthouse(req)) {
+        return next(req, evt, res);
+      }
       return current(next)(req, evt, res);
     };
   }
