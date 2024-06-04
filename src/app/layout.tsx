@@ -35,7 +35,7 @@ export default function RootLayout({
         <html lang="en" className="!scroll-smooth">
           <head>
             <ColorSchemeScript />
-            <link rel="icon" href="coldMailerIcon.png" />
+            <link rel="icon" href="https://utfs.io/f/6cca6f67-3c72-4be5-8e4e-2ffa4723607b-vxyxxd.png" />
             <meta charSet="utf-8" />
           </head>
 
