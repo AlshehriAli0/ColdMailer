@@ -130,7 +130,7 @@ export default function EditRecipient() {
             onSubmit={(e) => formAction(e)}
           >
             <input
-              className="h-[15%] w-[80%] rounded border-2 border-white/5 bg-transparent p-1 outline-none transition-all focus:border-none focus:outline-violet-200 md:h-[65%] md:w-full"
+              className="h-[15%] w-[80%] rounded border-2 border-white/5 bg-transparent p-1 outline-none transition-all focus:border-none focus:outline-violet-200 md:h-[65%] md:w-full "
               type="email"
               name="emailAddress"
               defaultValue={editedRecipient.email_address}

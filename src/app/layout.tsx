@@ -3,14 +3,16 @@ import "@mantine/core/styles.css";
 import "@mantine/dropzone/styles.css";
 
 import { Inter } from "next/font/google";
-import Navbar from "../components/navbar";
+import Navbar from "@/components/navbar";
 import type { AppProps } from "next/app";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
-import Footer from "@/components/footer";
-import SideBar from "@/components/sidebar";
 import RecoilContextProvider from "@/context/recoilContextProvider";
 import { Toaster } from "sonner";
+import dynamic from "next/dynamic";
+
+const SideBar = dynamic(() => import("@/components/sidebar"), { ssr: false });
+const Footer = dynamic(() => import("@/components/footer"), { ssr: false });
 
 const inter = Inter({
   subsets: ["latin-ext"],
