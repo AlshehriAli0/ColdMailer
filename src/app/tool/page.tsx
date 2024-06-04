@@ -2,8 +2,9 @@ import React from "react";
 
 import { saveUser } from "@/server/save-user";
 
-export default function ToolPage() {
-  void saveUser();
+
+export default async function ToolPage() {
+  await saveUser();
 
   return (
     <section className="text-white">

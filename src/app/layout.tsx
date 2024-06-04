@@ -7,12 +7,17 @@ import Navbar from "@/components/navbar";
 import type { AppProps } from "next/app";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
-import RecoilContextProvider from "@/context/recoilContextProvider";
 import { Toaster } from "sonner";
-import dynamic from "next/dynamic";
+import dynamicImport from "next/dynamic";
+import RecoilContextProvider from "@/context/recoilContextProvider";
 
-const SideBar = dynamic(() => import("@/components/sidebar"), { ssr: false });
-const Footer = dynamic(() => import("@/components/footer"), { ssr: false });
+const SideBar = dynamicImport(() => import("@/components/sidebar"), {
+  ssr: false,
+});
+const Footer = dynamicImport(() => import("@/components/footer"), {
+  ssr: false,
+});
+
 
 const inter = Inter({
   subsets: ["latin-ext"],
@@ -35,7 +40,10 @@ export default function RootLayout({
         <html lang="en" className="!scroll-smooth">
           <head>
             <ColorSchemeScript />
-            <link rel="icon" href="https://utfs.io/f/6cca6f67-3c72-4be5-8e4e-2ffa4723607b-vxyxxd.png" />
+            <link
+              rel="icon"
+              href="https://utfs.io/f/6cca6f67-3c72-4be5-8e4e-2ffa4723607b-vxyxxd.png"
+            />
             <meta charSet="utf-8" />
           </head>
 

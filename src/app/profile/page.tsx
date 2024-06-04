@@ -2,6 +2,7 @@ import React from 'react'
 
 import { UserProfile } from "@clerk/nextjs";
 
+export const dynamic = "force-static";
 
 export default function Profile() {
   return (

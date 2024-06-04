@@ -1,10 +1,10 @@
 import SectionBreak from "@/components/section-break";
-import dynamic from "next/dynamic";
+import d from "next/dynamic";
 import Intro from "@/components/intro";
 
-const InfoCard = dynamic(() => import("@/components/info-card"));
+const InfoCard = d(() => import("@/components/info-card"));
 
-
+export const dynamic = "force-static";
 
 export default function HomePage() {
   return (

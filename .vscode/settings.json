@@ -2,5 +2,5 @@
   "WillLuke.nextjs.addTypesOnSave": true,
   "WillLuke.nextjs.hasPrompted": true,
   "typescript.tsdk": "node_modules\\typescript\\lib",
-  "cSpell.words": ["upstash"]
+  "cSpell.words": ["lucide", "upstash"]
 }
