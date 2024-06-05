@@ -17,14 +17,14 @@ export const updateRecipient = createServerAction()
   .input(
     z.object({
       id: z.number(),
-      emailAddress: z.string().email(),
+      email_address: z.string().email(),
       name: z.string().optional(),
       status: statusTypeSchema,
       sentAt: z.string(),
     }),
   )
   .handler(async ({ input }) => {
-    const { id, emailAddress, name, status, sentAt } = input;
+    const { id, email_address, name, status, sentAt } = input;
 
     const date = new Date(sentAt);
     date.setHours(0, 0, 0, 0);
@@ -33,7 +33,7 @@ export const updateRecipient = createServerAction()
       await db
         .update(recipients)
         .set({
-          email_address: emailAddress,
+          email_address: email_address,
           name,
           status,
           sent_at: isoDateTime,

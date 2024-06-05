@@ -30,10 +30,10 @@ export default function EditRecipient() {
   };
 
   const sentAtDate =
-    editedRecipient?.sent_at instanceof Date
+    typeof editedRecipient?.sent_at === "string"
       ? editedRecipient.sent_at
       : editedRecipient?.sent_at
-        ? new Date(editedRecipient.sent_at)
+        ? new Date(editedRecipient.sent_at).toLocaleDateString()
         : null;
 
   if (!editedRecipient) {
@@ -87,7 +87,7 @@ export default function EditRecipient() {
 
     const updateObj = {
       id: originalRecipient.id,
-      emailAddress: formData.get("emailAddress") as string,
+      email_address: formData.get("emailAddress") as string,
       name: formData.get("name") as string,
       status: formData.get("status") as "accepted" | "pending" | "rejected",
       sentAt: formData.get("sentAt") as string,
@@ -130,7 +130,7 @@ export default function EditRecipient() {
             onSubmit={(e) => formAction(e)}
           >
             <input
-              className="h-[15%] w-[80%] rounded border-2 border-white/5 bg-transparent p-1 outline-none transition-all focus:border-none focus:outline-violet-200 md:h-[65%] md:w-full "
+              className="h-[15%] w-[80%] rounded border-2 border-white/5 bg-transparent p-1 outline-none transition-all focus:border-none focus:outline-violet-200 md:h-[65%] md:w-full"
               type="email"
               name="emailAddress"
               defaultValue={editedRecipient.email_address}
@@ -187,7 +187,7 @@ export default function EditRecipient() {
                 className="w-[100%] rounded border-2 border-white/5 bg-transparent p-1 outline-none transition-all focus:border-none focus:outline-violet-200 md:h-[65%]"
                 type="date"
                 name="sentAt"
-                defaultValue={sentAtDate?.toISOString().split("T")[0] ?? ""}
+                defaultValue={sentAtDate ? sentAtDate : ""}
                 onChange={() => {
                   if (!change) {
                     setChange(true);
