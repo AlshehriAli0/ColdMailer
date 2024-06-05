@@ -1,33 +1,32 @@
 import type { Recipient } from "@/lib/types";
 import { verify } from "@/utils/verify";
-import { db } from "./db";
+import { db } from "@/db";
+import { eq } from "drizzle-orm";
+import { users } from "@/db/schema";
 
-const prisma = db;
-
-async function getRecipientsFromDB(token: string): Promise<Recipient[]> {
-  const userID = (await prisma.user.findFirst({ where: { token } }))?.id;
-
-  const user = await prisma.user.findFirst({
-    where: { id: userID },
-    include: { recipients: true },
+async function getRecipientsFromDB(id: string): Promise<Recipient[]> {
+  const user = await db.query.users.findFirst({
+    where: eq(users.id, id),
+    with: {
+      recipients: true,
+    },
   });
 
   if (!user) {
     throw new Error("User not found");
   }
 
-  const recipients = user.recipients;
-  return recipients as Recipient[];
+  return user.recipients as Recipient[];
 }
 
 async function fetchData() {
   try {
-    const { token } = (await verify()) as { token: string };
-    if (!token) {
+    const { id } = await verify();
+    if (!id) {
       throw new Error("No token found");
     }
 
-    const recipients = await getRecipientsFromDB(token);
+    const recipients = await getRecipientsFromDB(id);
     return recipients;
   } catch (error) {
     console.error("Error fetching recipients:", error);

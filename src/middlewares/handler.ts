@@ -1,6 +1,6 @@
 import type { NextRequest, NextFetchEvent, NextResponse } from "next/server";
 import type { MiddlewareWrapperType, ChainMiddlewareType } from "./types";
-import { isLighthouse } from "./lighthouse";
+import { isLighthouse } from "./speed";
 
 export function middlewareHandler(
   middlewares: Array<MiddlewareWrapperType>,

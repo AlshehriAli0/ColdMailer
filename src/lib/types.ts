@@ -3,5 +3,7 @@ export type Recipient = {
   email_address: string;
   name: string;
   status: "accepted" | "pending" | "rejected";
-  sent_at: string | Date;
+  user_id: string;
+  sent_at: string;
+  note: string;
 };

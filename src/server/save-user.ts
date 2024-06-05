@@ -1,6 +1,8 @@
 import { verify } from "@/utils/verify";
 import { validateEmail } from "@/utils/helpers";
-import { db } from "./db";
+import { db } from "@/db";
+import { users } from "@/db/schema";
+import { eq } from "drizzle-orm";
 
 export async function saveUser() {
   const { email, name, id } = await verify();
@@ -11,22 +13,18 @@ export async function saveUser() {
 
   if (validateEmail(email)) {
     try {
-      const prisma = db;
-      const existingUser = await prisma.user.findUnique({
-        where: { email },
+      const User = await db.query.users.findFirst({
+        where: eq(users.email_address, email),
       });
 
-      if (!existingUser) {
-        await prisma.user.create({
-          data: {
-            email,
-            first_name: name,
-            id,
-          },
+      if (!User) {
+        await db.insert(users).values({
+          email_address: email,
+          first_name: name,
+          id,
         });
         console.log("User saved successfully");
       }
-      await prisma.$disconnect();
     } catch (error) {
       console.error("Error saving user:", error);
     }

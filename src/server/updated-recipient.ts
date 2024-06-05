@@ -2,10 +2,10 @@
 
 import { z } from "zod";
 import { createServerAction } from "zsa";
-import { db } from "./db";
+import { db } from "@/db";
 import { revalidatePath } from "next/cache";
-
-const prisma = db;
+import { recipient } from "@/db/schema";
+import { eq } from "drizzle-orm";
 
 const statusTypeSchema = z.union([
   z.literal("accepted"),
@@ -30,22 +30,24 @@ export const updateRecipient = createServerAction()
     date.setHours(0, 0, 0, 0);
     const isoDateTime = date.toISOString();
     try {
-      await prisma.recipient.update({
-        where: {
-          id,
-        },
-        data: {
+      await db
+        .update(recipient)
+        .set({
           email_address: emailAddress,
           name,
           status,
           sent_at: isoDateTime,
-        },
-      });
+        })
+        .where(eq(recipient.id, id));
+
       revalidatePath("/dashboard/tracker");
       return { data: true };
     } catch (error) {
       console.error("Error updating recipient:", error);
-      return { data: false, error: "Too many requests, please try again later" };
+      return {
+        data: false,
+        error: "Too many requests, please try again later",
+      };
     }
   });
 
