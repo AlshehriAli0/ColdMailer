@@ -4,7 +4,7 @@ import { z } from "zod";
 import { createServerAction } from "zsa";
 import { db } from "@/db";
 import { revalidatePath } from "next/cache";
-import { recipient } from "@/db/schema";
+import { recipients } from "@/db/schema";
 import { eq } from "drizzle-orm";
 
 const statusTypeSchema = z.union([
@@ -31,14 +31,14 @@ export const updateRecipient = createServerAction()
     const isoDateTime = date.toISOString();
     try {
       await db
-        .update(recipient)
+        .update(recipients)
         .set({
           email_address: emailAddress,
           name,
           status,
           sent_at: isoDateTime,
         })
-        .where(eq(recipient.id, id));
+        .where(eq(recipients.id, id));
 
       revalidatePath("/dashboard/tracker");
       return { data: true };
