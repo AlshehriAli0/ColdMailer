@@ -10,4 +10,6 @@ if (!connectionString) {
 
 const client = postgres(connectionString, { prepare: false });
 
+console.log("connected to database");
+
 export const db = drizzle(client, { schema });

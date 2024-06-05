@@ -11,13 +11,9 @@ import { Toaster } from "sonner";
 import dynamicImport from "next/dynamic";
 import RecoilContextProvider from "@/context/recoilContextProvider";
 
-const SideBar = dynamicImport(() => import("@/components/sidebar"), {
-  ssr: false,
-});
 const Footer = dynamicImport(() => import("@/components/footer"), {
   ssr: false,
 });
-
 
 const inter = Inter({
   subsets: ["latin-ext"],
@@ -49,9 +45,7 @@ export default function RootLayout({
 
           <body className={`bg-slate-950 font-sans ${inter.className}`}>
             <Toaster />
-
             <MantineProvider>
-              <SideBar />
               <Navbar />
               {children}
               <Footer />
