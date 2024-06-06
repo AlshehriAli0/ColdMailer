@@ -21,10 +21,11 @@ export const updateRecipient = createServerAction()
       name: z.string().optional(),
       status: statusTypeSchema,
       sentAt: z.string(),
+      note: z.string().optional(),
     }),
   )
   .handler(async ({ input }) => {
-    const { id, email_address, name, status, sentAt } = input;
+    const { id, email_address, name, status, sentAt, note } = input;
 
     const date = new Date(sentAt);
     date.setHours(0, 0, 0, 0);
@@ -37,6 +38,7 @@ export const updateRecipient = createServerAction()
           name,
           status,
           sent_at: isoDateTime,
+          note,
         })
         .where(eq(recipients.id, id));
 

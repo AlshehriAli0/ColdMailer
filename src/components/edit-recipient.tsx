@@ -7,6 +7,7 @@ import { MdOutlineCancel } from "react-icons/md";
 import { useRecoilState } from "recoil";
 import { toast } from "sonner";
 import { AnimatePresence, motion } from "framer-motion";
+import { not } from "drizzle-orm";
 
 export default function EditRecipient() {
   const [editedRecipient, setEditedRecipient] = useRecoilState(editRecipient);
@@ -91,6 +92,7 @@ export default function EditRecipient() {
       name: formData.get("name") as string,
       status: formData.get("status") as "accepted" | "pending" | "rejected",
       sentAt: formData.get("sentAt") as string,
+      note: formData.get("note") as string,
     };
 
     const updatePromise = updateRecipient(updateObj).then((response) => {
@@ -125,7 +127,7 @@ export default function EditRecipient() {
             initial="initial"
             animate="animate"
             exit="exit"
-            className="absolute inset-0 z-[99] mx-auto my-auto flex h-[75%] w-[90%] flex-col rounded-lg border border-white/10 bg-slate-950/90 p-6 px-8 shadow-2xl md:w-[30rem]"
+            className="absolute inset-0 z-[99] mx-auto my-auto flex h-[75%] w-[90%] flex-col rounded-lg border border-white/10 bg-slate-950/90 p-6 px-8 shadow-2xl md:w-[38rem]"
             onSubmit={(e) => formAction(e)}
           >
             <div className="mb-12 w-full">
@@ -236,13 +238,18 @@ export default function EditRecipient() {
               </h2>
               <textarea
                 className="group h-[67%] w-full rounded-md border-[1px] border-violet-300/40 bg-transparent p-2 outline-none transition-all focus:border-violet-400"
-                name=""
+                defaultValue={editedRecipient?.note}
+                name="note"
                 placeholder="Enter notes"
-                id=""
+                onChange={() => {
+                  if (!change) {
+                    setChange(true);
+                  }
+                }}
               />
             </div>
 
-            <div className="mt-16 flex items-center justify-end gap-3">
+            <div className="mt-12 flex items-center justify-end gap-3">
               <button
                 type="button"
                 onClick={handleCancel}
