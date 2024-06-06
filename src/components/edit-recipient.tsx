@@ -125,94 +125,139 @@ export default function EditRecipient() {
             initial="initial"
             animate="animate"
             exit="exit"
-            className="absolute inset-0 z-[99] mx-8 my-auto flex h-[45%] flex-col items-center justify-center gap-4 gap-x-9 gap-y-4 rounded border border-white/5 bg-white/[0.08] px-12 shadow-2xl md:left-[5%] md:top-[50%] md:mx-0 md:my-0 md:grid md:h-14 md:w-[90%]"
-            style={{ gridTemplateColumns: "1fr 1fr 1fr 1fr 0.3fr" }}
+            className="absolute inset-0 z-[99] mx-auto my-auto flex h-[75%] w-[90%] flex-col rounded-lg border border-white/10 bg-slate-950/90 p-6 px-8 shadow-2xl md:w-[30rem]"
             onSubmit={(e) => formAction(e)}
           >
-            <input
-              className="h-[15%] w-[80%] rounded border-2 border-white/5 bg-transparent p-1 outline-none transition-all focus:border-none focus:outline-violet-200 md:h-[65%] md:w-full"
-              type="email"
-              name="emailAddress"
-              defaultValue={editedRecipient.email_address}
-              onChange={() => {
-                if (!change) {
-                  setChange(true);
-                }
-              }}
-              required
-            />
+            <div className="mb-12 w-full">
+              <h1 className="text-2xl font-bold">Edit Recipient</h1>
+              <p className="text-violet-500/50">
+                Make changes to the recipient details.
+              </p>
+            </div>
 
-            <input
-              className="h-[15%] w-[80%] rounded border-2 border-white/5 bg-transparent p-1 outline-none transition-all focus:border-none focus:outline-violet-200 md:h-[65%] md:w-full"
-              type="text"
-              name="name"
-              onChange={() => {
-                if (!change) {
-                  setChange(true);
-                }
-              }}
-              defaultValue={editedRecipient.name}
-            />
+            <div className="mb-6 flex justify-center gap-3 md:gap-6">
+              <section className="group w-full">
+                <h2 className="mb-2 text-sm text-violet-400/60 transition-all group-focus-within:text-violet-400">
+                  Email *
+                </h2>
+                <input
+                  className="w-full rounded-md border-[1px] border-violet-300/40 bg-transparent p-2 outline-none transition-all focus:border-violet-400"
+                  placeholder="Enter email"
+                  type="email"
+                  name="emailAddress"
+                  defaultValue={editedRecipient.email_address}
+                  onChange={() => {
+                    if (!change) {
+                      setChange(true);
+                    }
+                  }}
+                  required
+                />
+              </section>
+              <section className="group w-full">
+                <h2 className="mb-2 w-full text-sm text-violet-400/60 transition-all group-focus-within:text-violet-400">
+                  Name
+                </h2>
+                <input
+                  className="group w-full rounded-md border-[1px] border-violet-300/40 bg-transparent p-2 outline-none transition-all focus:border-violet-400"
+                  placeholder="Enter name"
+                  type="text"
+                  name="name"
+                  onChange={() => {
+                    if (!change) {
+                      setChange(true);
+                    }
+                  }}
+                  defaultValue={editedRecipient.name}
+                />
+              </section>
+            </div>
 
-            <select
-              className="h-[15%] w-[80%] rounded border-2 border-white/5 bg-transparent p-1 outline-none transition-all focus:border-none focus:outline-violet-200 md:h-[65%] md:w-full"
-              name="status"
-              defaultValue={editedRecipient.status}
-              onChange={() => {
-                if (!change) {
-                  setChange(true);
-                }
-              }}
-              required
-            >
-              <option
-                className="p-2 font-bold text-violet-800"
-                value="accepted"
-              >
-                accepted
-              </option>
-              <option className="p-2 font-bold text-violet-800" value="pending">
-                pending
-              </option>
-              <option
-                className="p-2 font-bold text-violet-800"
-                value="rejected"
-              >
-                rejected
-              </option>
-            </select>
+            <div className="mb-6 flex justify-center gap-3 md:gap-6">
+              <section className="group w-full">
+                <h2 className="mb-2 w-full text-sm text-violet-400/60 transition-all group-focus-within:text-violet-400">
+                  Status *
+                </h2>
+                <select
+                  className="w-full rounded-md border-[1px] border-violet-300/40 bg-transparent p-2 py-3 outline-none transition-all focus:border-violet-400"
+                  name="status"
+                  defaultValue={editedRecipient.status}
+                  onChange={() => {
+                    if (!change) {
+                      setChange(true);
+                    }
+                  }}
+                  required
+                >
+                  <option
+                    className="p-2 font-bold text-violet-800"
+                    value="accepted"
+                  >
+                    accepted
+                  </option>
+                  <option
+                    className="p-2 font-bold text-violet-800"
+                    value="pending"
+                  >
+                    pending
+                  </option>
+                  <option
+                    className="p-2 font-bold text-violet-800"
+                    value="rejected"
+                  >
+                    rejected
+                  </option>
+                </select>
+              </section>
 
-            <div className="flex items-center gap-2">
-              <input
-                className="w-[100%] rounded border-2 border-white/5 bg-transparent p-1 outline-none transition-all focus:border-none focus:outline-violet-200 md:h-[65%]"
-                type="date"
-                name="sentAt"
-                defaultValue={sentAtDate ? sentAtDate : ""}
-                onChange={() => {
-                  if (!change) {
-                    setChange(true);
-                  }
-                }}
-                required
+              <section className="group w-full">
+                <h2 className="mb-2 w-full text-sm text-violet-400/60 group-focus-within:text-violet-400">
+                  Sent At *
+                </h2>
+                <input
+                  className="w-full rounded-md border-[1px] border-violet-300/40 bg-transparent p-2 px-2 outline-none transition-all focus:border-violet-400"
+                  type="date"
+                  placeholder="Enter date"
+                  name="sentAt"
+                  defaultValue={sentAtDate ? sentAtDate : ""}
+                  onChange={() => {
+                    if (!change) {
+                      setChange(true);
+                    }
+                  }}
+                  required
+                />
+              </section>
+            </div>
+
+            <div className="group h-[30%]">
+              <h2 className="mb-2 text-sm text-violet-400/60 transition-all group-focus-within:text-violet-400">
+                Notes
+              </h2>
+              <textarea
+                className="group h-[67%] w-full rounded-md border-[1px] border-violet-300/40 bg-transparent p-2 outline-none transition-all focus:border-violet-400"
+                name=""
+                placeholder="Enter notes"
+                id=""
               />
             </div>
 
-            <div className="flex items-center justify-end gap-3">
-              <button
-                type="submit"
-                className="group rounded border-2 border-white/5 px-5 py-2 text-2xl text-violet-200 transition hover:bg-white/5 active:scale-90 md:p-1"
-              >
-                <div className="transition-all active:scale-100 group-hover:scale-[1.17]">
-                  <IoMdSave />
-                </div>
-              </button>
+            <div className="mt-16 flex items-center justify-end gap-3">
               <button
                 type="button"
                 onClick={handleCancel}
-                className="group rounded border-2 border-white/5 px-5 py-2 text-2xl text-violet-200 transition hover:bg-white/5 active:scale-90 md:p-1"
+                className="rounded-lg border-2 border-white/10 px-5 py-2 text-2xl text-white/80 transition-all hover:scale-[1.05] hover:bg-white/10 active:scale-100 md:p-1"
               >
-                <div className="transition-all active:scale-100 group-hover:scale-[1.17]">
-                  <MdOutlineCancel />
+                <div className="p-1 px-4 text-base">
+                  <p>Cancel</p>
+                </div>
+              </button>
+              <button
+                type="submit"
+                className="rounded-lg border-2 border-white/10 bg-violet-400/30 px-5 py-2 text-2xl text-white transition-all hover:scale-[1.05] hover:bg-violet-400/45 active:scale-100 md:p-1"
+              >
+                <div className="p-1 px-4 text-base">
+                  <p>Save Changes</p>
                 </div>
               </button>
             </div>
