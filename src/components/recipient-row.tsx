@@ -30,7 +30,7 @@ export default function RecipientRow({
         >
           <GoDotFill />
         </span>
-        {recipient.status}
+        {recipient.status.charAt(0).toUpperCase() + recipient.status.slice(1)}
       </p>
       <p className="mx-auto flex items-center text-xs sm:text-sm md:mx-0 md:text-base">
         {recipient.sent_at
