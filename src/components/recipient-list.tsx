@@ -98,17 +98,16 @@ export default function RecipientList({
           >
             {editingRecipient === recipient ? (
               <EditRecipient key="edit-recipient" />
-            ) : (
-              <motion.div
-                className="grid h-full grid-cols-5 gap-4 text-center"
-                style={{ gridTemplateColumns: "4fr 4fr 1fr 1fr 0.3fr" }}
-              >
-                <RecipientRow
-                  recipient={recipient}
-                  handleEditClick={handleEditClick}
-                />
-              </motion.div>
-            )}
+            ) : null}
+            <motion.div
+              className="grid h-full grid-cols-5 gap-4 text-center"
+              style={{ gridTemplateColumns: "4fr 4fr 1fr 1fr 0.3fr" }}
+            >
+              <RecipientRow
+                recipient={recipient}
+                handleEditClick={handleEditClick}
+              />
+            </motion.div>
           </motion.div>
         ))}
       </AnimatePresence>

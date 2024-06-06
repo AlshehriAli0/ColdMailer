@@ -2,12 +2,9 @@ import { editRecipient } from "@/context/recoilContextProvider";
 import type { Recipient } from "@/lib/types";
 import updateRecipient from "@/server/updated-recipient";
 import React, { useEffect, useState } from "react";
-import { IoMdSave } from "react-icons/io";
-import { MdOutlineCancel } from "react-icons/md";
 import { useRecoilState } from "recoil";
 import { toast } from "sonner";
 import { AnimatePresence, motion } from "framer-motion";
-import { not } from "drizzle-orm";
 
 export default function EditRecipient() {
   const [editedRecipient, setEditedRecipient] = useRecoilState(editRecipient);
@@ -27,7 +24,7 @@ export default function EditRecipient() {
     setCancel(true);
     setTimeout(() => {
       setEditedRecipient(null);
-    }, 150);
+    }, 200);
   };
 
   const sentAtDate =
