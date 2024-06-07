@@ -14,5 +14,5 @@ export type Totals = {
   rejectedCount: number;
   acceptedPercentage: number;
   rejectedPercentage: number;
-  monthlyEmails: Record<number, number>;
+  monthlyEmails: number[];
 };

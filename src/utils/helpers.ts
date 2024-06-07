@@ -23,19 +23,19 @@ export const sortRecipients = (recipients: Recipient[], sortBy: string) => {
   return sortedRecipients;
 };
 
-export function calculateMonthlyEmails(
-  recipients: Recipient[],
-): Record<number, number> {
-  const monthlyEmails: Record<number, number> = {};
+export function calculateMonthlyEmails(recipients: Recipient[]): number[] {
+  const currentYear = new Date().getFullYear();
+  const monthlyEmails = Array(12).fill(0);
 
   recipients.forEach((recipient) => {
     const sentDate = new Date(recipient.sent_at);
-    const month = sentDate.getMonth() + 1;
-    if (!monthlyEmails[month]) {
-      monthlyEmails[month] = 0;
+    const sentYear = sentDate.getFullYear();
+
+    if (sentYear === currentYear) {
+      const month = sentDate.getMonth();
+      monthlyEmails[month]++;
     }
-    monthlyEmails[month]++;
   });
 
-  return monthlyEmails;
+  return monthlyEmails as number[];
 }

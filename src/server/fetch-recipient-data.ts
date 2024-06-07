@@ -44,7 +44,7 @@ async function fetchData() {
       ? (rejectedCount / totalRecipients) * 100
       : 0;
 
-    const monthlyEmails = calculateMonthlyEmails(recipients);
+    const monthlyEmails: number[] = calculateMonthlyEmails(recipients);
 
     return {
       recipients,
