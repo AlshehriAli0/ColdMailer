@@ -3,6 +3,7 @@ import { verify } from "@/utils/verify";
 import { db } from "@/db";
 import { eq } from "drizzle-orm";
 import { users } from "@/db/schema";
+import { calculateMonthlyEmails } from "@/utils/helpers";
 
 async function getRecipientsFromDB(id: string): Promise<Recipient[]> {
   const user = await db.query.users.findFirst({
@@ -27,7 +28,35 @@ async function fetchData() {
     }
 
     const recipients = await getRecipientsFromDB(id);
-    return recipients;
+
+    const totalRecipients = recipients.length;
+    const acceptedCount = recipients.filter(
+      (recipient) => recipient.status === "accepted",
+    ).length;
+    const rejectedCount = recipients.filter(
+      (recipient) => recipient.status === "rejected",
+    ).length;
+
+    const acceptedPercentage = totalRecipients
+      ? (acceptedCount / totalRecipients) * 100
+      : 0;
+    const rejectedPercentage = totalRecipients
+      ? (rejectedCount / totalRecipients) * 100
+      : 0;
+
+    const monthlyEmails = calculateMonthlyEmails(recipients);
+
+    return {
+      recipients,
+      totals: {
+        totalRecipients,
+        acceptedCount,
+        rejectedCount,
+        acceptedPercentage,
+        rejectedPercentage,
+        monthlyEmails,
+      },
+    };
   } catch (error) {
     console.error("Error fetching recipients:", error);
     throw error;

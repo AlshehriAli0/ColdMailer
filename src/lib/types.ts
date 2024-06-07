@@ -7,3 +7,12 @@ export type Recipient = {
   sent_at: string;
   note: string;
 };
+
+export type Totals = {
+  totalRecipients: number;
+  acceptedCount: number;
+  rejectedCount: number;
+  acceptedPercentage: number;
+  rejectedPercentage: number;
+  monthlyEmails: Record<number, number>;
+};

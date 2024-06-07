@@ -22,3 +22,20 @@ export const sortRecipients = (recipients: Recipient[], sortBy: string) => {
   }
   return sortedRecipients;
 };
+
+export function calculateMonthlyEmails(
+  recipients: Recipient[],
+): Record<number, number> {
+  const monthlyEmails: Record<number, number> = {};
+
+  recipients.forEach((recipient) => {
+    const sentDate = new Date(recipient.sent_at);
+    const month = sentDate.getMonth() + 1;
+    if (!monthlyEmails[month]) {
+      monthlyEmails[month] = 0;
+    }
+    monthlyEmails[month]++;
+  });
+
+  return monthlyEmails;
+}

@@ -2,27 +2,26 @@ import React, { Suspense, lazy } from "react";
 
 import GridButtons from "@/components/grid-buttons";
 import Skeleton from "@/components/suspense/grid-skeleton";
-import TrackerStats from "@/components/tracker-stats";
+import StatsSkeleton from "@/components/suspense/stats-skeleton";
 
-const Tracker = lazy(() => import("@/components/tracker"));
+const TrackerDashboard = lazy(() => import("@/components/dashboard"));
 
-
-export default function TrackerHome() {
+export default async function TrackerHome() {
   return (
-    <section className="no-scrollbar mt-[9rem] md:mt-[5rem] flex md:max-h-[84vh] flex-col overflow-y-auto md:ml-[16.5rem] md:max-w-[79.7%] 2xl:w-[84%] mx-4 md:mb-2 mb-12">
-      <div className="mb-12 flex flex-col mt-[3rem]">
+    <section className="no-scrollbar mx-4 mb-12 mt-[9rem] flex flex-col overflow-y-auto md:mb-2 md:ml-[16.5rem] md:mt-[5rem] md:max-h-[84vh] md:max-w-[79.7%] 2xl:w-[84%]">
+      <div className="mb-12 mt-[3rem] flex flex-col">
         <h1 className="text-3xl font-semibold text-violet-100">
           Track All Sent Emails 📩
         </h1>
-        <h2 className="text-violet-400/50 ">
+        <h2 className="text-violet-400/50">
           You can view, edit, add, delete all sent emails with ease!
         </h2>
       </div>
       <div>
-        <TrackerStats />
         <Suspense
           fallback={
             <React.Fragment>
+              <StatsSkeleton />
               <GridButtons />
               <Skeleton />
               <Skeleton />
@@ -35,9 +34,8 @@ export default function TrackerHome() {
             </React.Fragment>
           }
         >
-          <GridButtons />
-          <Tracker />
-          <div className="fixed bottom-0 h-20 w-full bg-gradient-to-t from-slate-950/95 to-transparent pointer-events-none"></div>
+          <TrackerDashboard />
+          <div className="pointer-events-none fixed bottom-0 h-20 w-full bg-gradient-to-t from-slate-950/95 to-transparent"></div>
         </Suspense>
       </div>
     </section>
