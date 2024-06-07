@@ -8,7 +8,7 @@ const TrackerDashboard = lazy(() => import("@/components/dashboard"));
 
 export default async function TrackerHome() {
   return (
-    <section className="no-scrollbar mx-4 mb-12 mt-[9rem] flex flex-col overflow-y-auto md:mb-2 md:ml-[16.5rem] md:mt-[5rem] md:max-h-[84vh] md:max-w-[79.7%] 2xl:w-[84%]">
+    <section className="no-scrollbar mx-4 mb-12 mt-[9rem] flex flex-col overflow-y-auto md:mb-2 md:ml-[17rem] md:mt-[5rem] md:max-h-[84vh] md:max-w-[79.7%] 2xl:w-[84%]">
       <div className="mb-12 mt-[3rem] flex flex-col">
         <h1 className="text-3xl font-semibold text-violet-100">
           Track All Sent Emails 📩
