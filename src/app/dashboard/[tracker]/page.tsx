@@ -14,7 +14,7 @@ export default function TrackerHome() {
         <h1 className="text-3xl font-semibold text-violet-100">
           Track All Sent Emails 📩
         </h1>
-        <h2 className="text-violet-600/50 ">
+        <h2 className="text-violet-400/50 ">
           You can view, edit, add, delete all sent emails with ease!
         </h2>
       </div>

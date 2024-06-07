@@ -57,7 +57,7 @@ const TrackerStats = memo(function TrackerStats() {
   }
 
   return (
-    <section className="mb-8 grid grid-cols-2 gap-4 text-violet-300 md:w-[95%] md:grid-cols-3">
+    <section className="mb-8 grid grid-rows-2 gap-4 text-violet-300 md:w-[95%] ">
       <div className="flex-1 rounded-xl border border-white/10">
         {/* <LineChart
           xAxis={[
@@ -72,30 +72,32 @@ const TrackerStats = memo(function TrackerStats() {
         /> */}
       </div>
 
-      <div className="flex-1 rounded-xl border border-white/10">
-        <div className="p-6">
-          <h4 className="text-lg font-bold">Accepted Status</h4>
-          <p className="text-violet-200/40">Total</p>
-          <span className="flex items-center">
-            <p className="mt-6 text-2xl text-green-500">{totalAccepted}</p>
-            <p className="text-md ml-3 mt-6 text-violet-200/25">
-              ({percentages.accepted}%)
-            </p>
-          </span>
+      <section className="flex gap-4">
+        <div className="flex-1 rounded-xl border border-white/10">
+          <div className="p-6">
+            <h4 className="text-lg font-bold">Accepted Status</h4>
+            <p className="text-violet-200/40">Total</p>
+            <span className="flex items-center">
+              <p className="mt-6 text-2xl text-green-500">{totalAccepted}</p>
+              <p className="text-md ml-3 mt-6 text-violet-200/25">
+                ({percentages.accepted}%)
+              </p>
+            </span>
+          </div>
         </div>
-      </div>
-      <div className="flex-1 rounded-xl border border-white/10">
-        <div className="p-6">
-          <h4 className="text-lg font-bold">Rejected Status</h4>
-          <p className="text-violet-200/40">Total</p>
-          <span className="flex items-center">
-            <p className="mt-6 text-2xl text-red-500">{totalRejected}</p>
-            <p className="text-md ml-3 mt-6 text-violet-200/25">
-              ({percentages.rejected}%)
-            </p>
-          </span>
+        <div className="flex-1 rounded-xl border border-white/10">
+          <div className="p-6">
+            <h4 className="text-lg font-bold">Rejected Status</h4>
+            <p className="text-violet-200/40">Total</p>
+            <span className="flex items-center">
+              <p className="mt-6 text-2xl text-red-500">{totalRejected}</p>
+              <p className="text-md ml-3 mt-6 text-violet-200/25">
+                ({percentages.rejected}%)
+              </p>
+            </span>
+          </div>
         </div>
-      </div>
+      </section>
     </section>
   );
 });
