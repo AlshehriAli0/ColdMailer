@@ -124,7 +124,7 @@ export default function EditRecipient() {
             initial="initial"
             animate="animate"
             exit="exit"
-            className="absolute inset-0 z-[99] mx-auto my-auto flex h-[75%] w-[90%] flex-col rounded-lg border border-white/10 bg-slate-950/90 p-6 px-8 shadow-2xl md:w-[38rem]"
+            className="absolute inset-0 z-[99] mx-auto my-auto flex h-[75%] w-[93%] flex-col rounded-lg border border-white/10 bg-slate-950/90 p-6 px-8 shadow-2xl md:w-[38rem]"
             onSubmit={(e) => formAction(e)}
           >
             <div className="mb-12 w-full">
@@ -260,7 +260,7 @@ export default function EditRecipient() {
                 type="submit"
                 className="rounded-lg border-2 border-white/10 bg-violet-400/30 px-5 py-2 text-2xl text-white transition-all hover:scale-[1.05] hover:bg-violet-400/45 active:scale-100 md:p-1"
               >
-                <div className="p-1 px-4 text-base">
+                <div className="p-1 md:px-4 text-base">
                   <p>Save Changes</p>
                 </div>
               </button>
