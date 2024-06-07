@@ -192,17 +192,17 @@ export default function EditRecipient() {
                     className="p-2 font-bold text-violet-800"
                     value="accepted"
                   >
-                    accepted
+                    Accepted
                   </option>
                   <option
                     className="p-2 font-bold text-violet-800"
                     value="pending"
                   >
-                    pending
+                    Pending
                   </option>
                   <option
                     className="p-2 font-bold text-violet-800"
-                    value="rejected"
+                    value="Rejected"
                   >
                     rejected
                   </option>
