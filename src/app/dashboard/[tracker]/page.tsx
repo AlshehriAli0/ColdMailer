@@ -27,10 +27,6 @@ export default async function TrackerHome() {
               <Skeleton />
               <Skeleton />
               <Skeleton />
-              <Skeleton />
-              <Skeleton />
-              <Skeleton />
-              <Skeleton />
             </React.Fragment>
           }
         >
