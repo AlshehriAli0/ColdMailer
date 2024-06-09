@@ -15,21 +15,7 @@ type RecipientListProps = {
   initialRecipients: Recipient[];
 };
 
-const fadeInVarient = {
-  initial: {
-    opacity: 0,
-    y: 100,
-  },
-  animate: (index: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: 0.15 * index,
-      duration: 0.15,
-      type: "spring",
-    },
-  }),
-};
+
 
 export default function RecipientList({
   initialRecipients,
@@ -49,13 +35,8 @@ export default function RecipientList({
 
   return (
     <section id="recipients" className="mb-8">
-      <AnimatePresence mode="wait">
         {recipients.map((recipient, index) => (
-          <motion.div
-            variants={fadeInVarient}
-            initial="initial"
-            animate="animate"
-            custom={index}
+          <div
             key={index}
             className={clsx(
               "h-14 max-w-full border-b border-white/10 px-2 text-violet-200 transition-all md:w-[95%] md:px-12",
@@ -74,9 +55,8 @@ export default function RecipientList({
                 handleEditClick={handleEditClick}
               />
             </motion.div>
-          </motion.div>
+          </div>
         ))}
-      </AnimatePresence>
     </section>
   );
 }
