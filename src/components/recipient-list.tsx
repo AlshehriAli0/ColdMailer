@@ -2,10 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import type { Recipient } from "@/lib/types";
-import {
-  editRecipient,
-  sortState,
-} from "@/context/recoilContextProvider";
+import { editRecipient, sortState } from "@/context/recoilContextProvider";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { sortRecipients } from "@/utils/helpers";
 import { motion, AnimatePresence } from "framer-motion";
@@ -42,7 +39,6 @@ export default function RecipientList({
     useRecoilState<Recipient | null>(editRecipient);
   const sortType = useRecoilValue(sortState);
 
-
   useEffect(() => {
     setRecipients(sortRecipients(initialRecipients, sortType));
   }, [sortType, initialRecipients]);
@@ -69,7 +65,8 @@ export default function RecipientList({
               <EditRecipient key="edit-recipient" />
             ) : null}
             <motion.div
-              className="grid h-full grid-cols-5 gap-4 text-center"
+              onClick={() => handleEditClick(recipient)}
+              className="grid h-full grid-cols-5 gap-4 text-center rounded-lg md:hover:bg-white-5 md:pointer-events-none"
               style={{ gridTemplateColumns: "4fr 4fr 1fr 1fr 0.3fr" }}
             >
               <RecipientRow

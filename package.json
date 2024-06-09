@@ -5,8 +5,7 @@
   "type": "module",
   "scripts": {
     "build": "next build --no-lint",
-    "postinstall": "prisma generate",
-    "db:push": "prisma db push",
+    "db:push": "drizzle-kit push",
     "db:studio": "prisma studio",
     "db:migrate": "prisma migrate dev --name init",
     "dev": "next dev --turbo",
