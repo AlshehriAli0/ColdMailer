@@ -51,9 +51,9 @@ export default function EditRecipient() {
       transition: {
         duration: 0.1,
         type: "spring",
-        stiffness: 250,
+        stiffness: 300,
         damping: 20,
-        mass: 0.3,
+        mass: 0.5,
       },
     },
     exit: {
@@ -115,7 +115,7 @@ export default function EditRecipient() {
           className="safari-blur fixed inset-0 z-50 h-screen w-screen backdrop-blur-lg"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.1 }}
+          transition={{ duration: 0.3 }}
           exit={{ opacity: 0 }}
         >
           <motion.form
