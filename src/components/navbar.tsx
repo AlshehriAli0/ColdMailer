@@ -4,7 +4,6 @@ import Link from "next/link";
 import React, { memo } from "react";
 
 import clsx from "clsx";
-import { motion } from "framer-motion";
 import { GiIceCube } from "react-icons/gi";
 import { usePathname } from "next/navigation";
 import dynamic from "next/dynamic";
@@ -24,12 +23,7 @@ function Navbar() {
           : "absolute",
       )}
     >
-      <motion.div
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.35, delay: 0.35 }}
-        viewport={{ once: true }}
-      >
+      <div>
         <Link
           href="/"
           className="flex gap-x-2 text-2xl font-semibold tracking-wide text-violet-400"
@@ -37,17 +31,12 @@ function Navbar() {
           <GiIceCube className="text-3xl" />
           <span className="hidden sm:block">ColdMailer</span>
         </Link>
-      </motion.div>
-      <motion.div
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.35 }}
-        className="transition hover:scale-105 active:scale-100"
-      >
+      </div>
+      <div className="transition hover:scale-105 active:scale-100">
         {pathName !== "/" &&
           !pathName.startsWith("/sign-up") &&
           !pathName.startsWith("/sign-in") && <Menu></Menu>}
-      </motion.div>
+      </div>
     </nav>
   );
 }
