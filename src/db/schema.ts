@@ -16,7 +16,7 @@ export const recipients = pgTable("recipients", {
   status: text("status").notNull(),
   user_id: text("user_id").notNull(),
   email_address: text("email_address").notNull(),
-  sent_at: date("sent_at").notNull(),
+  sent_at: date("sent_at", { mode: "date" }).notNull(),
   note: text("note"),
 });
 

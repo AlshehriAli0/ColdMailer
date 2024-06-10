@@ -5,7 +5,6 @@ import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { toast } from "sonner";
 import { AnimatePresence, motion } from "framer-motion";
-import { duration } from "@mui/material";
 
 export default function EditRecipient() {
   const [editedRecipient, setEditedRecipient] = useRecoilState(editRecipient);

@@ -4,7 +4,7 @@ export type Recipient = {
   name: string;
   status: "accepted" | "pending" | "rejected";
   user_id: string;
-  sent_at: string;
+  sent_at: Date;
   note: string;
 };
 
