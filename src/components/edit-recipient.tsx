@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { toast } from "sonner";
 import { AnimatePresence, motion } from "framer-motion";
+import { duration } from "@mui/material";
 
 export default function EditRecipient() {
   const [editedRecipient, setEditedRecipient] = useRecoilState(editRecipient);
@@ -49,7 +50,6 @@ export default function EditRecipient() {
       scale: 1,
       opacity: 1,
       transition: {
-        duration: 0.1,
         type: "spring",
         stiffness: 300,
         damping: 20,
@@ -58,14 +58,8 @@ export default function EditRecipient() {
     },
     exit: {
       opacity: 0,
-      scale: 0.9,
       y: 100,
-      transition: {
-        type: "spring",
-        stiffness: 250,
-        damping: 20,
-        mass: 0.3,
-      },
+      scale: 0.9,
     },
   };
 
@@ -115,7 +109,7 @@ export default function EditRecipient() {
           className="safari-blur fixed inset-0 z-50 h-screen w-screen backdrop-blur-lg"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.3 }}
+          transition={{ duration: 0.4 }}
           exit={{ opacity: 0 }}
         >
           <motion.form
@@ -260,7 +254,7 @@ export default function EditRecipient() {
                 type="submit"
                 className="rounded-lg border-2 border-white/10 bg-violet-400/30 px-5 py-2 text-2xl text-white transition-all hover:scale-[1.05] hover:bg-violet-400/45 active:scale-100 md:p-1"
               >
-                <div className="p-1 md:px-4 text-base">
+                <div className="p-1 text-base md:px-4">
                   <p>Save Changes</p>
                 </div>
               </button>
