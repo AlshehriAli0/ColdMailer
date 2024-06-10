@@ -13,7 +13,9 @@ async function getRecipientsFromDB(id: string): Promise<Recipient[]> {
     },
   });
 
-  if (!user) {
+  if (!user?.recipients) {
+    return [];
+  } else if (!user) {
     throw new Error("User not found");
   }
 
