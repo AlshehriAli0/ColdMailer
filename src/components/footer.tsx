@@ -20,8 +20,8 @@ function Footer() {
       </small>
       <div className="text-xs">
         <span className="font-semibold">About this website: </span>A modern mail
-        sending tool, built using Next.js, TypeScript, drizzle ORM & PostgreSQL,
-        Tailwind CSS, FastApi for Backend and deployed through Vercel.
+        sending tool, built using Next.js, TypeScript, drizzle & PostgreSQL,
+        Tailwind and FastApi for Backend.
       </div>
     </footer>
   );
