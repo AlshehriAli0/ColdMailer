@@ -13,7 +13,7 @@ function SideBar() {
   const pathName: string = usePathname();
 
   return (
-    <nav className="!z-[40] -mb-8 mt-[5.3rem] flex w-full shrink-0 flex-col border-b-violet-200/10 bg-slate-950 md:fixed md:top-32 md:-mb-0 md:w-[240px] md:border-0">
+    <nav className="!z-[40] -mb-8 mt-[5.3rem] flex w-full shrink-0 flex-col border-b-violet-200/10 bg-slate-950 md:fixed md:top-12 md:-mb-0 md:w-[240px] md:border-0">
       <div className="flex flex-row justify-between gap-x-4 gap-y-2 p-4 px-5 py-3 text-center sm:p-5 md:flex-col md:py-0 md:text-left">
         <Link
           href="/dashboard/tracker"
