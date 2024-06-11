@@ -21,7 +21,7 @@ export default function TrackerStats({ totals }: props) {
                 {totals?.acceptedCount}
               </p>
               <p className="text-md ml-3 mt-6 text-violet-200/25">
-                ({totals.acceptedPercentage}%)
+                ({totals?.acceptedPercentage.toFixed(2)}%)
               </p>
             </span>
           </div>
@@ -35,7 +35,7 @@ export default function TrackerStats({ totals }: props) {
                 {totals?.rejectedCount}
               </p>
               <p className="text-md ml-3 mt-6 text-violet-200/25">
-                ({totals.rejectedPercentage}%)
+                ({totals?.rejectedPercentage.toFixed(2)}%)
               </p>
             </span>
           </div>

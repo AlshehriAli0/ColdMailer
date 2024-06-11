@@ -66,8 +66,8 @@ export default function AddModule({ close }: { close: () => void }) {
     });
 
     toast.promise(addPromise, {
-      loading: "Updating Recipient",
-      success: "Recipient Updated",
+      loading: "Adding Recipient",
+      success: "Recipient Added",
       error: "Too many requests, please try again later",
       className: "bg-slate-900/95 text-violet-100 text-base border-white/10",
     });
@@ -93,10 +93,10 @@ export default function AddModule({ close }: { close: () => void }) {
             className="absolute inset-0 z-[99] mx-auto my-auto flex h-[75%] w-[93%] flex-col rounded-lg border border-white/10 bg-slate-950/90 p-6 px-8 shadow-2xl md:w-[38rem]"
             onSubmit={(e) => formAction(e)}
           >
-            <div className="mb-12 w-full">
-              <h1 className="text-2xl font-bold">Edit Recipient</h1>
+            <div className="mb-12 w-full text-white/90">
+              <h1 className="text-2xl font-bold">Add Recipient</h1>
               <p className="text-violet-500/50">
-                Make changes to the recipient details.
+                Add a new recipient to the list.
               </p>
             </div>
 
@@ -106,7 +106,7 @@ export default function AddModule({ close }: { close: () => void }) {
                   Email *
                 </h2>
                 <input
-                  className="w-full rounded-md border-[1px] border-violet-300/40 bg-transparent p-2 outline-none transition-all focus:border-violet-400"
+                  className="w-full rounded-md border-[1px] border-violet-300/40 bg-transparent p-2 text-white outline-none transition-all focus:border-violet-400"
                   placeholder="Enter email"
                   type="email"
                   name="emailAddress"
@@ -123,7 +123,7 @@ export default function AddModule({ close }: { close: () => void }) {
                   Name
                 </h2>
                 <input
-                  className="group w-full rounded-md border-[1px] border-violet-300/40 bg-transparent p-2 outline-none transition-all focus:border-violet-400"
+                  className="group w-full rounded-md border-[1px] border-violet-300/40 bg-transparent p-2 text-white outline-none transition-all focus:border-violet-400"
                   placeholder="Enter name"
                   type="text"
                   name="name"
@@ -142,7 +142,8 @@ export default function AddModule({ close }: { close: () => void }) {
                   Status *
                 </h2>
                 <select
-                  className="w-full rounded-md border-[1px] border-violet-300/40 bg-transparent p-2 py-3 outline-none transition-all focus:border-violet-400"
+                  className="w-full rounded-md border-[1px] border-violet-300/40 bg-transparent p-2 py-3 text-white outline-none transition-all focus:border-violet-400"
+                  defaultValue={"pending"}
                   name="status"
                   onChange={() => {
                     if (!change) {
@@ -177,7 +178,7 @@ export default function AddModule({ close }: { close: () => void }) {
                   Sent At *
                 </h2>
                 <input
-                  className="w-full rounded-md border-[1px] border-violet-300/40 bg-transparent p-2 px-2 outline-none transition-all focus:border-violet-400"
+                  className="w-full rounded-md border-[1px] border-violet-300/40 bg-transparent p-2 px-2 text-white outline-none transition-all focus:border-violet-400"
                   type="date"
                   placeholder="Enter date"
                   name="sent_at"
@@ -196,7 +197,7 @@ export default function AddModule({ close }: { close: () => void }) {
                 Notes
               </h2>
               <textarea
-                className="group h-[67%] w-full rounded-md border-[1px] border-violet-300/40 bg-transparent p-2 outline-none transition-all focus:border-violet-400"
+                className="group h-[67%] w-full rounded-md border-[1px] border-violet-300/40 bg-transparent p-2 text-white outline-none transition-all focus:border-violet-400"
                 name="note"
                 placeholder="Enter notes"
                 onChange={() => {
@@ -222,7 +223,7 @@ export default function AddModule({ close }: { close: () => void }) {
                 className="rounded-lg border-2 border-white/10 bg-violet-400/30 px-5 py-2 text-2xl text-white transition-all hover:scale-[1.05] hover:bg-violet-400/45 active:scale-100 md:p-1"
               >
                 <div className="p-1 text-base md:px-4">
-                  <p>Save Changes</p>
+                  <p>Add Recipient</p>
                 </div>
               </button>
             </div>

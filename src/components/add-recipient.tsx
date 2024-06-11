@@ -16,7 +16,7 @@ export default function AddRecipient() {
   return (
     <section className="my-6">
       <button
-        className="flex h-12 w-full items-center justify-center gap-2 rounded-lg border-[1.5px] border-white/15 text-lg font-semibold text-violet-300"
+        className="flex h-12 w-full items-center justify-center gap-2 rounded-lg border-[1.5px] border-white/10 text-lg font-semibold text-violet-300"
         onClick={onClick}
       >
         Add Recipient
