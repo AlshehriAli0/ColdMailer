@@ -4,6 +4,7 @@ import GridButtons from "./grid-buttons";
 import RecipientList from "./recipient-list";
 import TrackerStats from "./tracker-stats";
 import { IoMdInformationCircleOutline } from "react-icons/io";
+import AddRecipient from "./add-recipient";
 
 export default async function Dashboard() {
   const { recipients, totals } = await fetchData();
@@ -11,11 +12,11 @@ export default async function Dashboard() {
   return (
     <main>
       <TrackerStats totals={totals} />
-      <p className="text-sm text-violet-400/30 flex items-center gap-2 md:hidden mb-2">
-      <span className="text-lg">
-
-        <IoMdInformationCircleOutline />
-      </span>
+      <AddRecipient />
+      <p className=" flex items-center gap-2 text-sm text-violet-400/30 md:hidden">
+        <span className="text-lg">
+          <IoMdInformationCircleOutline />
+        </span>
         Edit details by clicking on the wanted recipient.
       </p>
       <GridButtons />
