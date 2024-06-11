@@ -20,24 +20,21 @@ export const updateRecipient = createServerAction()
       email_address: z.string().email(),
       name: z.string().optional(),
       status: statusTypeSchema,
-      sentAt: z.string(),
+      sent_at: z.date(),
       note: z.string().optional(),
     }),
   )
   .handler(async ({ input }) => {
-    const { id, email_address, name, status, sentAt, note } = input;
+    const { id, email_address, name, status, sent_at, note } = input;
 
-    const date = new Date(sentAt);
-    date.setHours(0, 0, 0, 0);
-    const isoDateTime = date.toISOString();
     try {
       await db
         .update(recipients)
         .set({
-          email_address: email_address,
+          email_address,
           name,
           status,
-          sent_at: isoDateTime,
+          sent_at,
           note,
         })
         .where(eq(recipients.id, id));

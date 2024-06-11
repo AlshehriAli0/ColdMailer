@@ -27,13 +27,6 @@ export default function EditRecipient() {
     }, 200);
   };
 
-  const sentAtDate =
-    typeof editedRecipient?.sent_at === "string"
-      ? editedRecipient.sent_at
-      : editedRecipient?.sent_at
-        ? new Date(editedRecipient.sent_at).toLocaleDateString()
-        : null;
-
   if (!editedRecipient) {
     return null;
   }
@@ -81,7 +74,7 @@ export default function EditRecipient() {
       email_address: formData.get("emailAddress") as string,
       name: formData.get("name") as string,
       status: formData.get("status") as "accepted" | "pending" | "rejected",
-      sentAt: formData.get("sentAt") as string,
+      sent_at: new Date(formData.get("sent_at") as string),
       note: formData.get("note") as string,
     };
 
@@ -195,9 +188,9 @@ export default function EditRecipient() {
                   </option>
                   <option
                     className="p-2 font-bold text-violet-800"
-                    value="Rejected"
+                    value="rejected"
                   >
-                    rejected
+                    Rejected
                   </option>
                 </select>
               </section>
@@ -210,8 +203,10 @@ export default function EditRecipient() {
                   className="w-full rounded-md border-[1px] border-violet-300/40 bg-transparent p-2 px-2 outline-none transition-all focus:border-violet-400"
                   type="date"
                   placeholder="Enter date"
-                  name="sentAt"
-                  defaultValue={sentAtDate ? sentAtDate : ""}
+                  name="sent_at"
+                  defaultValue={editedRecipient.sent_at
+                    .toISOString()
+                    .slice(0, 10)}
                   onChange={() => {
                     if (!change) {
                       setChange(true);
