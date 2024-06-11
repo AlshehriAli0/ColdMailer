@@ -11,7 +11,7 @@ export default async function Dashboard() {
   return (
     <main>
       <TrackerStats totals={totals} />
-      <p className="text-sm text-violet-400/30 flex items-center gap-2 md:hidden 4">
+      <p className="text-sm text-violet-400/30 flex items-center gap-2 md:hidden mb-2">
       <span className="text-lg">
 
         <IoMdInformationCircleOutline />
