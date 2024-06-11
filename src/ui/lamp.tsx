@@ -11,14 +11,12 @@ export function LampDemo() {
         initial={{ opacity: 0.4, y: 100 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{
-          
           duration: 0.8,
           ease: "easeInOut",
         }}
         className="bg-gradient-to-br from-slate-200 to-violet-500 bg-clip-text py-4 text-center text-[2.75rem] font-medium leading-[3rem] tracking-tight text-transparent md:mt-8 md:text-7xl md:leading-none xl:-mb-12 2xl:mb-36"
       >
-        Send <span className="font-extrabold">Bulk</span> Emails <br /> the easy
-        way
+        Sending <span className="font-extrabold">Emails</span> <br /> made easy
       </motion.h1>
     </LampContainer>
   );

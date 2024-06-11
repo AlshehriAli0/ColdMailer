@@ -181,6 +181,7 @@ export default function AddModule({ close }: { close: () => void }) {
                   className="w-full rounded-md border-[1px] border-violet-300/40 bg-transparent p-2 px-2 text-white outline-none transition-all focus:border-violet-400"
                   type="date"
                   placeholder="Enter date"
+                  defaultValue={new Date().toISOString().slice(0, 10)}
                   name="sent_at"
                   onChange={() => {
                     if (!change) {

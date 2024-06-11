@@ -20,7 +20,7 @@ const inter = Inter({
 
 export const metadata = {
   title: "Cold Mailer | Cold Mailing Tool ",
-  description: "Send bulk or cold emails with ease",
+  description: "Sending many emails was never easier than now",
 };
 
 export default function RootLayout({
