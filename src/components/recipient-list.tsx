@@ -44,7 +44,7 @@ export default function RecipientList({
           ) : null}
           <motion.div
             onClick={() => handleEditClick(recipient)}
-            className="md:hover:bg-white-5 grid h-full grid-cols-5 gap-4 rounded-lg text-center md:pointer-events-none"
+            className="md:hover:bg-white-5 grid h-full grid-cols-5 gap-4 rounded-lg text-center md:pointer-events-none active:scale-95 transition-all"
             style={{ gridTemplateColumns: "4fr 4fr 1fr 1fr 0.3fr" }}
           >
             <RecipientRow

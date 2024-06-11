@@ -17,7 +17,7 @@ export default async function Dashboard() {
         <span className="text-lg">
           <IoMdInformationCircleOutline />
         </span>
-        Edit details by clicking on the wanted recipient.
+        Edit or Delete by clicking on the wanted recipient.
       </p>
       <GridButtons />
       <RecipientList initialRecipients={recipients} />
