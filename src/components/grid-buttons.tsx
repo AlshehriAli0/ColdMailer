@@ -19,7 +19,7 @@ export default function GridButtons() {
           className="flex items-center gap-2 rounded-md py-2 pl-1 pr-3 text-base text-violet-400 transition hover:bg-white/10 hover:text-violet-300 md:text-lg"
           onClick={() => setSortType("email")}
         >
-          <span className="-mr-1 text-base md:mr-0 md:text-lg">Email</span>
+          <span className="-mr-1 text-lg md:mr-0">Email</span>
           <FaSort />
         </button>
       </div>
@@ -28,7 +28,7 @@ export default function GridButtons() {
           className="flex items-center gap-2 rounded-md py-2 pl-1 pr-3 text-base text-violet-400 transition hover:bg-white/10 hover:text-violet-300 md:text-lg"
           onClick={() => setSortType("name")}
         >
-          <span className="-mr-1 text-base md:mr-0 md:text-lg">Name</span>
+          <span className="-mr-1 text-lg md:mr-0">Name</span>
           <FaSort />
         </button>
       </div>
@@ -37,7 +37,7 @@ export default function GridButtons() {
           className="flex items-center gap-2 rounded-md py-2 pl-1 pr-3 text-base text-violet-400 transition hover:bg-white/10 hover:text-violet-300 md:text-lg"
           onClick={() => setSortType("status")}
         >
-          <span className="-mr-1 text-base md:mr-0  md:text-lg">Status</span>
+          <span className="-mr-1 text-lg md:mr-0">Status</span>
           <FaSort />
         </button>
       </div>
@@ -46,7 +46,7 @@ export default function GridButtons() {
           className="flex items-center gap-2 rounded-md py-2 pl-1 pr-3 text-base text-violet-400 transition hover:bg-white/10 hover:text-violet-300 md:text-lg"
           onClick={() => setSortType("sentAt")}
         >
-          <span className="-mr-1 text-base md:mr-0  md:text-lg">Sent</span>
+          <span className="-mr-1 text-lg md:mr-0">Sent</span>
           <FaSort />
         </button>
         <div className="hidden sm:flex">h</div>
